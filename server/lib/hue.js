@@ -30,6 +30,10 @@ Hue = class Hue {
         const data = {xy:rgbToXY(_randomRGBValue(),_randomRGBValue(),_randomRGBValue())};
         HTTP.put(`${this.baseUrl}lights/${id}/state`, {data:data});
     }
+    setLightBrightness(id, brightness){
+        const data = {bri: brightness};
+        HTTP.put(`${this.baseUrl}lights/${id}/state`, {data:data});
+    }
 }
 function rgbToXY(red, green, blue) {
     var point = _getXYPointFromRGB(red, green, blue);

@@ -1,0 +1,17 @@
+<template name="light">
+    <div class="card {{#unless state.reachable}}red{{/unless}}">
+        <div class="content">
+            <div class="header">{{name}}</div>
+        </div>
+        <div class="content">
+            <div class="ui toggle checkbox {{#if state.on}}checked{{/if}}">
+                <input id="{{uniqueid}}" type="checkbox" name="toggle" checked="{{#if state.on}}checked{{/if}}">
+                <label for="{{uniqueid}}">On</label>
+            </div>
+            <div class="ui purple button random">random</div>
+        </div>
+        <div class="extra content">
+            {{type}}
+        </div>
+    </div>
+</template>

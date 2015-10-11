@@ -12,11 +12,10 @@ Meteor.methods({
         check(g, Number);
         check(b, Number);
         if(hueService){
-            hueService.setLightRandom(id);
+            hueService.setLightColor(id, r, g, b);
         }
     },
     setLightBrightness(id, brightness){
-        console.log(brightness);
         check(id, String);
         check(brightness, Number);
         if(hueService){

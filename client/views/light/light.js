@@ -16,4 +16,13 @@ Template.light.events({
         brightness = parseFloat(brightness);
         Meteor.call('setLightBrightness', target.data._id, brightness);
     },
+    'change .color'(event, target){
+        console.log(event);
+        console.log(target);
+        const {r,g,b} = target.$('.color').spectrum('get').toRgb();
+        Meteor.call('setLightColor', target.data._id, r,g,b);
+    }
+});
+Template.light.onRendered(function(){
+    this.$(".color").spectrum();
 });

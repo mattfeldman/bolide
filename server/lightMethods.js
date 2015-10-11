@@ -21,5 +21,11 @@ Meteor.methods({
         if(hueService){
             hueService.setLightBrightness(id, brightness);
         }
+    },
+    setLightRandom(id){
+        check(id, String);
+        if(hueService){
+            hueService.setLightRandom(id);
+        }
     }
 });

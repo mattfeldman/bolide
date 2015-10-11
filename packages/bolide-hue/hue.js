@@ -13,6 +13,7 @@ Hue = class Hue {
         this.ip = ip;
         this.username = username;
         this.baseUrl = `http://${ip}/api/${username}/`;
+        Meteor.log.debug('Registered bridge ' +this.baseUrl);
     }
     getLights(){
         const response = HTTP.get(this.baseUrl+"lights");
@@ -21,18 +22,22 @@ Hue = class Hue {
     setLightOn(id, on){
         const fullReq = this.baseUrl+`lights/${id}/state`;
         HTTP.put(fullReq, {data:{"on": on}});
+        Meteor.log.info(`Light Toggle: ${id} now ${on}`,{light:id});
     }
     setLightColor(id,r,g,b){
         const data = {xy:rgbToXY(r,g,b)};
         HTTP.put(`${this.baseUrl}lights/${id}/state`, {data:data});
+        Meteor.log.info(`Light Color: ${id} now rgb(${r},${g},${b})`,{light:id});
     }
     setLightRandom(id){
         const data = {xy:rgbToXY(_randomRGBValue(),_randomRGBValue(),_randomRGBValue())};
         HTTP.put(`${this.baseUrl}lights/${id}/state`, {data:data});
+        Meteor.log.info(`Light Random: ${id}`,{light:id});
     }
     setLightBrightness(id, brightness){
         const data = {bri: brightness};
         HTTP.put(`${this.baseUrl}lights/${id}/state`, {data:data});
+        Meteor.log.info(`Light Brightness: ${id} now ${brightness}`,{light:id});
     }
 }
 function rgbToXY(red, green, blue) {

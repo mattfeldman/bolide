@@ -13,15 +13,9 @@ body, #main {
     overflow-x: hidden;
     color: @primaryFontColor;
     font-family: 'Fauna One', serif;
-}
-
-a {
-    color: inherit;
-    transition: 0.3s color;
-
-    &:hover {
-        color: @primaryLinkHoverColor;
-    }
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
 .icon {

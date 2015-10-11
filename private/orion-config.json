@@ -154,6 +154,25 @@
           "private/templates/html/common.html"
         ]
       }
+    },
+    "package":{
+      "default":{
+        "desc": "Creates a local package",
+        "variables":[
+          {
+            "name": "namespace",
+            "desc": "The local namespace"
+          },
+          {
+            "name": "packageName",
+            "desc": "The name of the package"
+          }
+        ],
+        "files":[
+          "private/templates/package/package.js",
+          "private/templates/package/lib.js"
+        ]
+      }
     }
   },
   "reset" : {

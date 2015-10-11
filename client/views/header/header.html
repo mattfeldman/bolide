@@ -1,8 +1,15 @@
 <template name="header">
-    <div class="center aligned {{isActive}} header-wrapper">
+    <div class="ui center aligned {{isActive}} header-wrapper">
         <h1 class="huge center aligned main ui header">
             {{constant 'name'}}
         </h1>
+        <div class="ui page grid">
+            <div class="ui inverted center aligned secondary pointing menu">
+                <a href="lights" class="active item">Lights</a>
+                <a href="bridge" class="item">Bridges</a>
+                <a class="item">Logs</a>
+            </div>
+        </div>
     </div>
 </template>
 

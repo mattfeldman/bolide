@@ -3,8 +3,10 @@
         <header>
             {{> header}}
         </header>
-        <main style="flex:1">
-            {{> yield}}
+        <main style="flex:1; margin:1em">
+            <div class="ui page grid">
+                {{> yield}}
+            </div>
         </main>
         {{! Also a sidebar! }}
         <footer>

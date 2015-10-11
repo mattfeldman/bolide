@@ -40,3 +40,6 @@ semantic:ui-css
 bolide:hue
 bolide:core
 zimme:active-route
+ostrio:logger
+ostrio:loggermongo
+mrt:momentjs

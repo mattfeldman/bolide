@@ -70,11 +70,14 @@ mobile-experience@1.0.1
 mobile-status-bar@1.0.6
 mongo@1.1.2
 mongo-id@1.0.1
+mrt:momentjs@2.1.0
 natestrauser:animate-css@3.4.0
 npm-bcrypt@0.7.8_2
 npm-mongo@1.4.39_1
 observe-sequence@1.0.7
 ordered-dict@1.0.4
+ostrio:logger@1.0.0
+ostrio:loggermongo@1.0.0
 promise@0.5.0
 raix:handlebar-helpers@0.2.5
 random@1.0.4

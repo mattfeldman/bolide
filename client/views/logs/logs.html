@@ -1,0 +1,21 @@
+<template name="logs">
+    <h1 class="ui header">Logs</h1>
+    <table class="ui single line celled table">
+        <thead>
+        <tr>
+            <th>Level</th>
+            <th>Message</th>
+            <th>Time</th>
+        </tr>
+        </thead>
+        <tbody>
+            {{#each logs}}
+                <tr>
+                    <td>{{level}}</td>
+                    <td>{{message}}</td>
+                    <td class="right aligned">{{timeFrom date}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</template>

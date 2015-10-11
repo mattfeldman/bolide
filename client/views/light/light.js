@@ -1,5 +1,3 @@
-Template.light.helpers({
-});
 Template.light.events({
     'change .checkbox'(event, target){
         event.preventDefault();

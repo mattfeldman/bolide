@@ -21,7 +21,6 @@ natestrauser:animate-css
 dburles:collection-helpers
 meteorhacks:fast-render
 
-semantic:ui-css
 standard-minifiers
 meteor-base
 mobile-experience
@@ -37,3 +36,4 @@ spacebars
 check
 ecmascript
 http
+semantic:ui-css

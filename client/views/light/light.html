@@ -2,19 +2,21 @@
     <div class="card {{#unless state.reachable}}red{{/unless}}">
         <div class="content">
             <div class="header">{{name}}</div>
+            {{#unless state.reachable}}
+                <div class="ui right floated basic red label">disabled</div>
+            {{/unless}}
         </div>
         <div class="content">
-            <div class="ui toggle checkbox {{#if state.on}}checked{{/if}}">
-                <input id="{{uniqueid}}" type="checkbox" name="toggle" checked="{{#if state.on}}checked{{/if}}">
-                <label for="{{uniqueid}}">On</label>
-            </div>
-
-            <div class="ui small basic purple button random">random</div>
             <input id="brightness" type="range" min="1" max="254" value="{{state.bri}}" step="1"/>
             <input type='text' class="color" />
         </div>
         <div class="extra content">
-            {{type}}
+            <div class="ui left floated toggle checkbox {{#if state.on}}checked{{/if}}">
+                <input id="{{uniqueid}}" type="checkbox" name="toggle" checked="{{#if state.on}}checked{{/if}}">
+                <label for="{{uniqueid}}">{{#if state.on}}On{{else}}Off{{/if
+                }}</label>
+            </div>
+            <div class="ui right floated small basic purple button random">random</div>
         </div>
     </div>
 </template>

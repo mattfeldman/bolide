@@ -15,6 +15,7 @@ boilerplate-generator@1.0.4
 bolide:core@0.0.1
 bolide:hue@0.0.1
 bolide:log@0.0.1
+bolide:service@0.0.1
 browser-policy@1.0.5
 browser-policy-common@1.0.4
 browser-policy-content@1.0.6
@@ -59,7 +60,6 @@ livedata@1.0.15
 localstorage@1.0.5
 logging@1.0.8
 manuelschoebel:ms-seo@0.4.1
-matteodem:easy-security@0.1.4
 meteor@1.1.9
 meteor-base@1.0.1
 meteorhacks:fast-render@2.10.0

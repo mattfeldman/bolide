@@ -39,6 +39,15 @@ Hue = class Hue {
         HTTP.put(`${this.baseUrl}lights/${id}/state`, {data:data});
         Meteor.log.info(`Light Brightness: ${id} now ${brightness}`,{light:id});
     }
+    setLightState(id, state){
+        const data = _(state).clone();
+        if(state && state.rgb){
+            data.xy = rgbToXY(state.rgb.r,state.rgb.g,state.rgb.b);
+            delete data.rgb;
+        }
+        HTTP.put(`${this.baseUrl}lights/${id}/state`, {data:data});
+        Meteor.log.info(`Light State: ${id} now ${data}`,{light:id});
+    }
 }
 function rgbToXY(red, green, blue) {
     var point = _getXYPointFromRGB(red, green, blue);

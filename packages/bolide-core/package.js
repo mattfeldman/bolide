@@ -12,7 +12,6 @@ Package.onUse(function(api) {
         'mongo',
         'check',
         'aldeed:simple-schema',
-        'audit-argument-checks',
         'dburles:collection-helpers',
         'ecmascript',
         'bolide:hue'
@@ -20,9 +19,10 @@ Package.onUse(function(api) {
 
     api.addFiles('models/Bridges.js');
     api.addFiles('models/Lights.js');
+    api.addFiles('models/LightStates.js');
 
     api.addFiles('server/bridgeMethods.js');
     api.addFiles('server/lightMethods.js');
 
-    api.export(['Bridges', 'Lights']);
+    api.export(['Bridges', 'Lights', 'LightStates']);
 });

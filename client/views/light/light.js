@@ -21,5 +21,9 @@ Template.light.onRendered(function(){
         const {r,g,b} = self.$('.color').spectrum('get').toRgb();
         Meteor.call('setLightColor', self.data._id, r,g,b);
     }, 500);
-    this.$(".color").spectrum({move: throttledLightUpdate});
+    let options = {move: throttledLightUpdate};
+    if(self.data.rgb){
+        options.color = self.data.colorString;
+    }
+    this.$(".color").spectrum(options);
 });

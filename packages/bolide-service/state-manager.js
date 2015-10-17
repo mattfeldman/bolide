@@ -26,7 +26,6 @@ function manageState(){
             });
         }
         if(Object.keys(reqState).length !== 0) {
-            console.log(reqState);
             service.hue().setLightState(id, reqState);
         }
     });

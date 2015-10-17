@@ -1,19 +1,19 @@
 <template name="light">
     <div class="card {{#unless raw.state.reachable}}red{{/unless}}">
-        <div class="content" style="{{#if raw.state.on}}background-color:{{colorString}}{{/if}}">
+        <div class="content" style="{{#if toggledOn}}background-color:{{colorString}}{{/if}}">
             <div class="header">{{raw.name}}</div>
             {{#unless raw.state.reachable}}
                 <div class="ui right floated basic red label">disabled</div>
             {{/unless}}
         </div>
         <div class="content">
-            <input id="brightness" type="range" min="1" max="254" value="{{raw.state.bri}}" step="1"/>
+            <input id="brightness" type="range" min="1" max="254" value="{{bri}}" step="1"/>
             <input type='text' class="color" />
         </div>
         <div class="extra content">
-            <div class="ui left floated toggle checkbox {{#if raw.state.on}}checked{{/if}}">
-                <input id="{{raw.uniqueid}}" type="checkbox" name="toggle" checked="{{#if raw.state.on}}checked{{/if}}">
-                <label for="{{raw.uniqueid}}">{{#if raw.state.on}}On{{else}}Off{{/if}}</label>
+            <div class="ui left floated toggle checkbox {{#if toggledOn}}checked{{/if}}">
+                <input id="{{raw.uniqueid}}" type="checkbox" name="toggle" checked="{{#if toggledOn}}checked{{/if}}">
+                <label for="{{raw.uniqueid}}">{{#if toggledOn}}On{{else}}Off{{/if}}</label>
             </div>
             <div class="ui right floated small icon purple basic button random"><i class="random icon"></i></div>
         </div>

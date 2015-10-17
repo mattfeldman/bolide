@@ -27,6 +27,7 @@ check@1.0.6
 chuangbo:cookie@1.1.0
 coffeescript@1.0.10
 dburles:collection-helpers@1.0.3
+dburles:mongo-collection-instances@0.3.4
 ddp@1.2.2
 ddp-client@1.2.1
 ddp-common@1.2.1
@@ -40,6 +41,7 @@ ejson@1.0.7
 email@1.0.7
 fastclick@1.0.7
 geojson-utils@1.0.4
+gwendall:body-events@0.1.6
 hot-code-push@1.0.0
 html-tools@1.0.5
 htmljs@1.0.5
@@ -54,6 +56,7 @@ iron:middleware-stack@1.0.11
 iron:router@1.0.12
 iron:url@1.0.11
 jquery@1.11.4
+lai:collection-extensions@0.1.4
 launch-screen@1.0.4
 less@2.5.0_3
 livedata@1.0.15
@@ -65,6 +68,23 @@ meteor-base@1.0.1
 meteorhacks:fast-render@2.10.0
 meteorhacks:inject-data@1.4.1
 meteorhacks:picker@1.0.3
+meteortoys:allthings@2.1.1
+meteortoys:authenticate@2.0.0
+meteortoys:autopub@2.0.1
+meteortoys:blueprint@2.0.2
+meteortoys:email@2.0.1
+meteortoys:hotreload@2.0.1
+meteortoys:listen@2.0.0
+meteortoys:method@2.0.0
+meteortoys:pro@2.0.0
+meteortoys:pub@2.0.0
+meteortoys:result@2.0.1
+meteortoys:shell@2.0.1
+meteortoys:status@2.0.0
+meteortoys:sub@2.0.0
+meteortoys:throttle@2.0.0
+meteortoys:toykit@2.0.1
+meteortoys:toypro@2.0.0
 minifiers@1.1.7
 minimongo@1.0.10
 mobile-experience@1.0.1
@@ -72,6 +92,8 @@ mobile-status-bar@1.0.6
 mongo@1.1.2
 mongo-id@1.0.1
 mrt:momentjs@2.1.0
+msavin:jetsetter@1.2.0
+msavin:mongol@1.4.1
 natestrauser:animate-css@3.4.0
 npm-bcrypt@0.7.8_2
 npm-mongo@1.4.39_1

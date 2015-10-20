@@ -13,6 +13,14 @@ LightState = class LightState{
             LightStates.upsert({_id:this.stateId}, {$set:{lights:lightStates.lights}});
         }
     }
+    clearState(lightId){
+        let lightStates = LightStates.findOne({_id:this.stateId});
+        if(lightStates) {
+            if(!lightStates.lights) lightStates.lights = {};
+            lightStates.lights[lightId] = {};
+            LightStates.upsert({_id:this.stateId}, {$set:{lights:lightStates.lights}});
+        }
+    }
     getLights (){
         let lightStates = LightStates.findOne({_id:this.stateId});
         return lightStates && lightStates.lights;

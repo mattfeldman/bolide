@@ -4,7 +4,7 @@ Meteor.startup(function(){
     LightStates.find({}).observe({added:manageState, changed:manageState, removed:manageState});
 });
 function manageState(){
-    const states = LightStates.find({},{$sort:{priority:-1}}).fetch();
+    const states = LightStates.find({},{sort:{priority:1}}).fetch();
     // get current state
     var newState = {};
     _(states).each((state)=>{

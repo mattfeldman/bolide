@@ -10,3 +10,8 @@ Template.lights.helpers({
         return Lights.find().count();
     }
 });
+Template.lights.events({
+    'click .off'(){
+        Meteor.call('allOff');
+    }
+});

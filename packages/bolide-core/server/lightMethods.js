@@ -25,5 +25,9 @@ Meteor.methods({
         if(!Meteor.isServer) return;
         check(id, String);
         manual.setLightRandom(id);
+    },
+    allOff(){
+        if(!Meteor.isServer) return;
+        manual.setAllOff();
     }
 });

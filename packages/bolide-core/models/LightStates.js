@@ -28,10 +28,13 @@ LightState = class LightState{
     setLights(value){
         LightStates.upsert({_id:this.stateId}, {$set:{lights:value}});
     }
-}
+};
 
 ManualState = class ManualState extends LightState {
     constructor() {
         super('manual', 1000);
     }
-}
+    setAllOff() {
+        Lights.find({},{fields:{'_id':1}}).fetch().map(l => super.setLight(l._id,{on: false}));
+    }
+};

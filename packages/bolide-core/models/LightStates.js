@@ -34,6 +34,16 @@ ManualState = class ManualState extends LightState {
     constructor() {
         super('manual', 1000);
     }
+    setLightRandom(id){
+        const state = {
+            rgb: {
+                r: Math.random() * 255,
+                g: Math.random() * 255,
+                b: Math.random() * 255
+            }
+        };
+        super.setLight(id, state);
+    }
     setAllOff() {
         Lights.find({},{fields:{'_id':1}}).fetch().map(l => super.setLight(l._id,{on: false}));
     }

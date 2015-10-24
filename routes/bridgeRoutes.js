@@ -1,3 +1,5 @@
-Router.route('/bridge/', function () {
-  this.render('bridge');
-},{name:"bridge"});
+FlowRouter.route('/bridge', {
+  action(){
+    BlazeLayout.render("basicLayout", {area: "bridge"});
+  }
+});

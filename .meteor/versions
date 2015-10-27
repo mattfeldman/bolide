@@ -15,6 +15,7 @@ blaze-html-templates@1.0.1
 blaze-tools@1.0.4
 boilerplate-generator@1.0.4
 bolide:core@0.0.1
+bolide:dependencies@0.0.1
 bolide:hue@0.0.1
 bolide:log@0.0.1
 bolide:rescue-time@0.0.1

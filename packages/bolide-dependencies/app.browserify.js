@@ -1,0 +1,1 @@
+ColorPicker = require('react-color');

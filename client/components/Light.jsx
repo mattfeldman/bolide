@@ -21,9 +21,9 @@ Light = React.createClass({
         const {r,g,b} = state.rgb;
         return `rgb(${r},${g},${b})}`;
     },
-    toggledOn(){
-        const state = this.data.state;
-        return state && state.on || false;
+    onToggleChange(e){
+        this.setState({on: e.target.checked});
+        Meteor.call('setLightOn', this.props.id, e.target.checked);
     },
     clickPickColor(e){
         this.setState({showColor: !this.state.showColor});
@@ -34,7 +34,7 @@ Light = React.createClass({
         Meteor.call('setLightColor', this.props.id, rgb.r, rgb.g, rgb.b);
     },
     briSlider(e) {
-        this.state.bri = e.target.value;
+        this.setState({bri: e.target.value});
         Meteor.call('setLightBrightness', this.props.id, parseFloat(e.target.value));
     },
     headerStyle(){
@@ -56,7 +56,7 @@ Light = React.createClass({
                 </div>
                 <div className="extra content">
                     <div className="ui left floated toggle checkbox">
-                        <input id={this.props.light.raw.uniqueid} type="checkbox" name="toggle">
+                        <input id={this.props.light.raw.uniqueid} onChange={this.onToggleChange} type="checkbox" name="toggle" checked={this.state.on}>
                             <label htmlFor={this.props.light.raw.uniqueid}>{this.state.on ? 'On' : 'Off'}</label>
                         </input>
                         <div className="ui right floated small icon purple basic button random"><i className="random icon"></i></div>

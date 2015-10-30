@@ -50,7 +50,6 @@ http@1.1.1
 id-map@1.0.4
 jquery@1.11.4
 jsx@0.2.1
-kadira:flow-router@2.7.0
 kadira:react-layout@1.4.1
 lai:collection-extensions@0.1.4
 launch-screen@1.0.4
@@ -108,6 +107,7 @@ react-runtime-prod@0.13.3_6
 react-template-helper@0.1.6
 reactive-dict@1.1.2
 reactive-var@1.0.6
+reactrouter:react-router@0.1.8
 reload@1.1.4
 retry@1.0.4
 routepolicy@1.0.6

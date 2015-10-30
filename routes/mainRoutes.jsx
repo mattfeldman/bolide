@@ -1,7 +1,7 @@
-FlowRouter.route('/', {
-  action(){
-    ReactLayout.render(MainLayout, {
-      content: <LightPanel />
-    });
-  }
-});
+//FlowRouter.route('/', {
+//  action(){
+//    ReactLayout.render(MainLayout, {
+//      content: <LightPanel />
+//    });
+//  }
+//});

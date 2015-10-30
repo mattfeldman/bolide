@@ -8,7 +8,7 @@ MainLayout = React.createClass({
                 </header>
                 <main style={mainStyle}>
                     <div className="ui page grid">
-                        {this.props.content}
+                        {this.props.children}
                     </div>
                 </main>
                 <footer>

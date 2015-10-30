@@ -1,7 +1,7 @@
-FlowRouter.route("/logs", {
-  action() {
-    ReactLayout.render(MainLayout, {
-      content: <Logs />
-    });
-  }
-});
+//FlowRouter.route("/logs", {
+//  action() {
+//    ReactLayout.render(MainLayout, {
+//      content: <Logs />
+//    });
+//  }
+//});

@@ -3,15 +3,12 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-4commerce:blaze-as-react
 accounts-password
 aldeed:collection2
 audit-argument-checks
-blaze-html-templates
 bolide:core
 bolide:hue
 bolide:log
-bolide:rescue-time
 bolide:service
 browser-policy
 check
@@ -21,7 +18,6 @@ ejson
 fastclick
 http
 jquery
-kadira:blaze-layout
 kadira:flow-router
 kadira:react-layout
 less

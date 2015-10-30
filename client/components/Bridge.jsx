@@ -17,7 +17,7 @@ Bridge = React.createClass({
             <p>No current bridge</p>
     },
     clickSync(){
-      Meteor.call('syncBridge', this.state.ip);
+        Meteor.call('syncBridge', this.state.ip);
     },
     clickUpdate(){
         Meteor.call('updateBridge', this.state.ip, this.state.username);

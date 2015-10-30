@@ -52,7 +52,9 @@ Light = React.createClass({
                 </div>
                 <div className="content">
                     <div className="ui button" onClick={this.clickPickColor}>pick color</div>
-                    <ColorPicker type="photoshop" color={this.state.rgb} position="below" display={this.state.showColor} onChange={this.onColorChange}/>
+                    <div>
+                        <ColorPicker type="photoshop" color={this.state.rgb} position="below" display={this.state.showColor} onChange={this.onColorChange}/>
+                    </div>
                 </div>
                 <div className="extra content">
                     <div className="ui left floated toggle checkbox">

@@ -5,7 +5,7 @@ Package.describe({
     git: ''
 });
 Npm.depends({
-    "react-color": "1.1.2",
+    "react-color": "1.1.1",
     "externalify": "0.1.0"
 });
 Package.onUse(function(api) {

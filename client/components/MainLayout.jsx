@@ -4,7 +4,7 @@ MainLayout = React.createClass({
         return (
             <div id="main">
                 <header>
-                    <React.BlazeView template="header" />
+                    <Header />
                 </header>
                 <main style={mainStyle}>
                     <div className="ui page grid">

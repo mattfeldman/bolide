@@ -5,7 +5,7 @@ Light = React.createClass({
     },
     mixins: [ReactMeteorData],
     getInitialState(){
-        return {bri: 0, on: false, rgb: {r:255,g:0,b:0}, showColor: false}
+        return {bri: 0, on: false, rgb: {r:125,g:125,b:125}, showColor: false}
     },
     getMeteorData(){
         var lightState = LightStates.findOne("manual");
@@ -27,6 +27,9 @@ Light = React.createClass({
     },
     clickPickColor(e){
         this.setState({showColor: !this.state.showColor});
+    },
+    clickRandom(){
+        Meteor.call('setLightRandom', this.props.id);
     },
     onColorChange(e){
         let rgb =  _(e.rgb).omit('a');
@@ -61,8 +64,8 @@ Light = React.createClass({
                         <input id={this.props.light.raw.uniqueid} onChange={this.onToggleChange} type="checkbox" name="toggle" checked={this.state.on}>
                             <label htmlFor={this.props.light.raw.uniqueid}>{this.state.on ? 'On' : 'Off'}</label>
                         </input>
-                        <div className="ui right floated small icon purple basic button random"><i className="random icon"></i></div>
                     </div>
+                    <div className="ui right floated small icon purple basic button random" onClick={this.clickRandom}><i className="random icon"></i></div>
                 </div>
             </div>
         );

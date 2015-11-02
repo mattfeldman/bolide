@@ -1,10 +1,10 @@
 const {Router, Route} = ReactRouter;
 
-//const history = ReactRouter.history.useQueries(ReactRouter.history.createHistory)()
+const history = ReactRouter.history.useQueries(ReactRouter.history.createHistory)()
 
 Meteor.startup(function() {
     React.render((
-        <Router>
+        <Router history={history}>
             <Route path="/" component={MainLayout}>
                 <Route path="/" component={LightPanel} />
                 <Route path="/lights" component={LightPanel} />

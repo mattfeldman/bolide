@@ -42,3 +42,4 @@ underscore
 useraccounts:semantic-ui
 bolide:dependencies
 reactrouter:react-router
+bolide:dash

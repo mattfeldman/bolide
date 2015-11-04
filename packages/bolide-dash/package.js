@@ -16,9 +16,11 @@ Package.onUse(function(api) {
         'bolide:core',
         'bolide:service',
         'bolide:log',
-        'ecmascript'
+        'ecmascript',
+        'react'
     ]);
 
     api.addFiles('dash.js', 'server');
+    api.addFiles('dash.jsx','client');
     api.export('');
 });

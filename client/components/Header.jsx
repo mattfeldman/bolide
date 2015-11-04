@@ -11,6 +11,7 @@ Header = React.createClass({
                     <Link to="/lights" activeClassName="active" className="item"><i className="idea icon"></i> Lights</Link>
                     <Link to="/bridge" activeClassName="active" className="item"><i className="wifi icon"></i> Bridges</Link>
                     <Link to="/logs" activeClassName="active" className="item"><i className="browser icon"></i> Logs</Link>
+                    <Link to="/plugins" activeClassName="active" className="item"><i className="puzzle icon"></i> Plugins</Link>
                 </div>
             </div>
         </div>);

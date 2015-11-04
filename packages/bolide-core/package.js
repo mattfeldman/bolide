@@ -16,6 +16,7 @@ Package.onUse(function(api) {
         'ecmascript',
         'bolide:hue'
     ]);
+    api.addFiles('plugin.js');
 
     api.addFiles('models/Bridges.js');
     api.addFiles('models/Lights.js');
@@ -24,5 +25,5 @@ Package.onUse(function(api) {
     api.addFiles('server/bridgeMethods.js');
     api.addFiles('server/lightMethods.js');
 
-    api.export(['Bridges', 'Lights', 'LightStates','LightState', 'ManualState']);
+    api.export(['Bridges', 'Lights', 'LightStates','LightState', 'ManualState', 'BolidePlugin']);
 });

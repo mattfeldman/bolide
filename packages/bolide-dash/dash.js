@@ -16,7 +16,7 @@ Meteor.startup(function(){
             var ret = decoders.Ethernet(buffer);
 
             if(ret.info.srcmac == '74:c2:46:2b:75:9c') {
-                Meteor.call('allOff');
+                // Meteor.call('allOff');
             }
         }
     }));

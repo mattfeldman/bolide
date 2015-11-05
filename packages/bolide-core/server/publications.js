@@ -1,3 +1,3 @@
-/**
- * Created by decap on 10/16/2015.
- */
+Meteor.publish('pluginSettings', function(key){
+    return PluginSettings.find({_id:key});
+});

@@ -1,3 +1,15 @@
+PluginSettings = new Mongo.Collection('plugin_settings');
+PluginSettings.allow({
+    insert : function () {
+        return true;
+    },
+    update : function () {
+        return true;
+    },
+    remove : function () {
+        return true;
+    }
+});
 BolidePlugin = {list:[]};
 BolidePlugin.register = function(name, component){
     BolidePlugin.list.push(new Plugin(name, component));

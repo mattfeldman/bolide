@@ -9,11 +9,12 @@ Meteor.startup(function() {
                 <Route path="lights" component={LightPanel} />
                 <Route path="bridge" component={Bridge} />
                 <Route path="logs" component={Logs} />
+                <Route path="/plugins" component={PluginLayout}>
+                    <Route path="/" component=""/>
+                    {BolidePlugin.list.map(p => <Route path={p.name} component={p.component}/>)}
+                </Route>
             </Route>
-            <Route path="/plugins" component={PluginLayout}>
-                <Route path="/" component=""/>
-                {BolidePlugin.list.map(p => <Route path={p.name} component={p.component}/>)}
-            </Route>
+
         </Router>
     ), document.body);
 });

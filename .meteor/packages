@@ -43,3 +43,4 @@ useraccounts:semantic-ui
 bolide:dependencies
 reactrouter:react-router
 bolide:dash
+bolide:rescue-time

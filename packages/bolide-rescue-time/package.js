@@ -11,7 +11,10 @@ Package.onUse(function(api) {
         'ecmascript',
         'bolide:core',
         'bolide:log',
-        'aramk:tinycolor'
+        'aramk:tinycolor',
+        'react',
+        'mongo'
     ]);
     api.addFiles('rescue-time.js','server');
+    api.addFiles('RescueTime.jsx','client');
 });

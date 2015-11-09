@@ -40,6 +40,9 @@ RescueTimeKey = React.createClass({
     handleChange(e){
         this.setState({key:e.target.value});
     },
+    componentWillReceiveProps(newProp){
+        this.setState({key: newProp.apiKey});
+    },
     componentWillMount(){
         this.setState({key: this.props.apiKey});
     }

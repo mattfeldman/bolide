@@ -24,6 +24,7 @@ Package.onUse(function(api) {
 
     api.addFiles('server/bridgeMethods.js');
     api.addFiles('server/lightMethods.js');
+    api.addFiles('server/publications.js', 'server');
 
     api.export(['Bridges', 'Lights', 'LightStates','LightState', 'ManualState', 'BolidePlugin', 'PluginSettings']);
 });

@@ -10,6 +10,7 @@ PluginSettings.allow({
         return true;
     }
 });
+
 BolidePlugin = {list:[]};
 BolidePlugin.register = function(name, component){
     BolidePlugin.list.push(new Plugin(name, component));
@@ -21,3 +22,10 @@ class Plugin{
         this.component = component;
     }
 }
+Meteor.methods({
+    updateSetting(id, doc){
+        check(id, String);
+        check(doc, Object);
+        PluginSettings.upsert({_id:id},doc);
+    }
+});

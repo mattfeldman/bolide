@@ -1,3 +1,4 @@
-Meteor.publish('pluginSettings', function(key){
-    return PluginSettings.find({_id:key});
+Meteor.publish('pluginSettings', function(id){
+    check(id, String);
+    return PluginSettings.find({_id:id});
 });

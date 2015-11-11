@@ -1,12 +1,15 @@
 RescueTime = React.createClass({
     mixins: [ReactMeteorData],
     getMeteorData(){
-        let subscription = Meteor.subscribe('pluginSettings', 'rescueTime');
+        let pluginSubscription = Meteor.subscribe('pluginSettings', 'rescueTime');
+        let lightSubscription = Meteor.subscribe('lights');
         let plugin = PluginSettings.findOne('rescueTime') || {};
         return {
             key: plugin.key || "not set",
             enabled: plugin.enabled || false,
-            loaded: subscription.ready()
+            light: plugin.light || "",
+            lights: Lights.find().fetch(),
+            loaded: pluginSubscription.ready() && lightSubscription.ready()
         };
     },
     save(state){
@@ -15,12 +18,15 @@ RescueTime = React.createClass({
     render(){
         return(
             <div>
-                <div className="ui header">RescueTime Plugin</div>
+                <div cl7assName="ui header">RescueTime Plugin</div>
                 {!this.data.loaded ?
                     'Loading..' :
                     <RescueTimeKey
                         enabled={this.data.enabled}
                         apiKey={this.data.key}
+                        selectedLight={this.data.selectedLight}
+                        lights={this.data.lights}
+                        light={this.data.light}
                         save={this.save}/>}
             </div>
         );
@@ -31,6 +37,8 @@ RescueTimeKey = React.createClass({
         apiKey: React.PropTypes.string.isRequired,
         enabled: React.PropTypes.bool.isRequired,
         save: React.PropTypes.func.isRequired,
+        lights: React.PropTypes.array.isRequired,
+        light: React.PropTypes.string.isRequired
     },
     render(){
         return (
@@ -44,6 +52,12 @@ RescueTimeKey = React.createClass({
                         <input type="checkbox" checked={this.state.enabled} onChange={this.enableChange}></input>
                         <label>{this.state.enabled ? "Enabled" : "Disabled"}</label>
                     </div>
+                </div>
+                <div className="field">
+                    <label>Select Light</label>
+                    <select onChange={this.lightChange} value={this.state.light} ref="lightSelect">
+                        {this.props.lights.map(l =><option value={l._id}>{l._id} - {l.raw.name}</option>)}
+                    </select>
                 </div>
                 <button className="ui button" type="submit">Save</button>
             </form>
@@ -59,11 +73,15 @@ RescueTimeKey = React.createClass({
     enableChange(e){
         this.setState({enabled:e.target.checked});
     },
+    lightChange(e){
+        let light = React.findDOMNode(this.refs.lightSelect).value;
+        this.setState({light: light});
+    },
     componentWillReceiveProps(newProp){
-        this.setState({key: newProp.apiKey, enabled: newProp.enabled});
+        this.setState({key: newProp.apiKey, enabled: newProp.enabled, light: newProp.light});
     },
     componentWillMount(){
-        this.setState({key: this.props.apiKey, enabled: this.props.enabled});
+        this.setState({key: this.props.apiKey, enabled: this.props.enabled, light: this.props.light});
     }
 });
 BolidePlugin.register("RescueTime", RescueTime);

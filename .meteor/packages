@@ -13,7 +13,6 @@ bolide:service
 browser-policy
 check
 dburles:collection-helpers
-ecmascript
 ejson
 fastclick
 http
@@ -30,8 +29,6 @@ mrt:momentjs
 natestrauser:animate-css
 raix:handlebar-helpers
 random
-react
-react-template-helper
 reload
 semantic:ui-css
 session
@@ -44,3 +41,8 @@ bolide:dependencies
 reactrouter:react-router
 bolide:dash
 bolide:rescue-time
+react-runtime
+react-meteor-data
+reactrouter:react-router-ssr
+thereactivestack:blazetoreact
+webpack:webpack

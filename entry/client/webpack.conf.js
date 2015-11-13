@@ -25,7 +25,11 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.jsx?$/, loader: 'babel', query: babelSettings, exclude: /node_modules/ },
-      { test: /\.css$/, loader: 'style!css' },
+      // LESS
+      {
+        test: /\.less$/,
+        loader: 'style!css!less'
+      },
       { test: /\.(png|jpe?g)(\?.*)?$/, loader: 'url?limit=8182' },
       { test: /\.(svg|ttf|woff|eot)(\?.*)?$/, loader: 'file' }
     ]

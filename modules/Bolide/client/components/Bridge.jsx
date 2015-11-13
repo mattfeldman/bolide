@@ -11,9 +11,10 @@ export default class Bridge extends Component {
             loading: !subscription.ready()
         };
     }
-    getInitialState(){
-        return {ip: "", username:""};
-    }
+    state = {
+        ip: "",
+        username:""
+    };
     renderBridgeHeader(){
         return this.data.bridge ?
             <p>Bridge has ip <span className="ui label">{this.data.bridge.ip}</span> with username <span className="ui label">{this.data.bridge.username}</span></p> :

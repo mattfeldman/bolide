@@ -2,6 +2,7 @@ import { Component, PropTypes } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 
+require("../stylesheets/main.less");
 export default class MainLayout extends Component {
     render(){
         var mainStyle ={flex:1,marginTop:'2em',marginBottom:'1em'};

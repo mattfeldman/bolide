@@ -82,6 +82,7 @@ reactrouter:react-router-ssr@0.2.13
 reload@1.1.4
 retry@1.0.4
 routepolicy@1.0.6
+semantic:ui-css@2.1.2
 service-configuration@1.0.5
 session@1.1.1
 sha@1.0.4

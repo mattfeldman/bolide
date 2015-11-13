@@ -7,9 +7,9 @@ export default class Light extends Component {
         id: React.PropTypes.string,
         light: React.PropTypes.object
     }
-    getInitialState(){
-        return {bri: 0, on: false, rgb: {r:125,g:125,b:125}, showColor: false}
-    }
+
+    state = {bri: 0, on: false, rgb: {r:125,g:125,b:125}, showColor: false};
+
     getMeteorData(){
         var lightState = LightStates.findOne("manual");
         let state =  lightState && lightState.lights && lightState.lights[this.props.id];

@@ -1,12 +1,15 @@
-Logs = React.createClass({
-    mixins: [ReactMeteorData],
+import ReactMixin from 'react-mixin';
+import { Component, PropTypes } from 'react';
+
+@ReactMixin.decorate(ReactMeteorData)
+export default class Logs extends Component {
     getMeteorData() {
         var subscription = Meteor.subscribe("logs");
         return {
             logs: Meteor.log.collection.find({}, {sort: {timestamp: -1}}).fetch(),
             loading: !subscription.ready()
         };
-    },
+    }
     renderRow(log){
         let singleLineStyle = {'white-space': 'nowrap'};
         return(
@@ -16,7 +19,7 @@ Logs = React.createClass({
             <td style={singleLineStyle}>{moment(log.date).fromNow()}</td>
         </tr>
         );
-    },
+    }
     renderTable(){
         return (
             <table className="ui celled table">
@@ -32,12 +35,12 @@ Logs = React.createClass({
                 </tbody>
             </table>
         )
-    },
+    }
     renderLoading(){
         return (
             <div class="ui active centered large inline loader">Loading...</div>
         );
-    },
+    }
     render() {
         return (
             <div>
@@ -46,4 +49,4 @@ Logs = React.createClass({
             </div>
         );
     }
-});
+};

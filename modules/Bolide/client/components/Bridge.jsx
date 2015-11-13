@@ -1,5 +1,8 @@
-Bridge = React.createClass({
-    mixins: [ReactMeteorData],
+import { Component, PropTypes } from 'react';
+import ReactMixin from 'react-mixin';
+
+@ReactMixin.decorate(ReactMeteorData)
+export default class Bridge extends Component {
     getMeteorData() {
         var subscription = Meteor.subscribe("bridge");
         const bridge = Bridges.findOne("main");
@@ -7,27 +10,27 @@ Bridge = React.createClass({
             bridge: bridge,
             loading: !subscription.ready()
         };
-    },
+    }
     getInitialState(){
         return {ip: "", username:""};
-    },
+    }
     renderBridgeHeader(){
         return this.data.bridge ?
             <p>Bridge has ip <span className="ui label">{this.data.bridge.ip}</span> with username <span className="ui label">{this.data.bridge.username}</span></p> :
             <p>No current bridge</p>
-    },
+    }
     clickSync(){
         Meteor.call('syncBridge', this.state.ip);
-    },
+    }
     clickUpdate(){
         Meteor.call('updateBridge', this.state.ip, this.state.username);
-    },
+    }
     handleIpChange(event){
         this.setState({ip: event.target.value});
-    },
+    }
     handleUsernameChange(event){
         this.setState({username: event.target.value});
-    },
+    }
     render() {
         return (
             <div className="ui text container segment">
@@ -56,4 +59,4 @@ Bridge = React.createClass({
             </div>
         );
     }
-});
+};

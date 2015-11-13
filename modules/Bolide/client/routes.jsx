@@ -1,5 +1,9 @@
 import { Route, IndexRoute } from 'react-router';
-
+import MainLayout from './components/MainLayout';
+import LightPanel from './components/LightPanel';
+import Bridge from './components/Bridge';
+import Logs from './components/Logs';
+import PluginLayout from './components/PluginLayout';
 export default (
     <Route path="/" component={MainLayout}>
         <Route path="/" component={LightPanel} />

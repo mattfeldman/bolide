@@ -1,5 +1,8 @@
-LightPanel = React.createClass({
-    mixins: [ReactMeteorData],
+import { Component, PropTypes } from 'react';
+import ReactMixin from 'react-mixin';
+
+@ReactMixin.decorate(ReactMeteorData)
+export default class LightPanel extends Component {
     getMeteorData(){
         var lightsSub = Meteor.subscribe('lights');
         var stateSub = Meteor.subscribe('manualLightState');
@@ -10,7 +13,7 @@ LightPanel = React.createClass({
             lights: lights.fetch()
         }
 
-    },
+    }
     render(){
         if (!this.data.loaded){
             return <span>Loading...</span>
@@ -25,12 +28,12 @@ LightPanel = React.createClass({
               </div>
           </div>
         );
-    },
+    }
     renderAllOff(){
         if(this.data.count) {
             return (<div className="ui right floated off button" onClick={this.handleAllOff}>all off</div>);}
-    },
+    }
     handleAllOff(){
         Meteor.call('allOff');
     }
-});
+};

@@ -1,5 +1,7 @@
 const {Link} = ReactRouter;
-PluginLayout = React.createClass({
+import { Component, PropTypes } from 'react';
+
+export default class PluginLayout extends Component {
     render(){
         return (
             <div className="row">
@@ -16,4 +18,4 @@ PluginLayout = React.createClass({
             </div>
         );
     }
-});
+};

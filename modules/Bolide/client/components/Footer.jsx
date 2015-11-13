@@ -1,4 +1,6 @@
-Footer = React.createClass({
+import { Component, PropTypes } from 'react';
+
+export default class Footer extends Component {
     render(){
         return (
             <div className="ui inverted center aligned padding-wrapper footer segment">
@@ -7,4 +9,4 @@ Footer = React.createClass({
             </div>
         );
     }
-});
+};

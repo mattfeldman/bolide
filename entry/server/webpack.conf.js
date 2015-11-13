@@ -1,3 +1,4 @@
+console.log("\nserver-webpack.js");
 var webpack = require('webpack');
 
 module.exports = {

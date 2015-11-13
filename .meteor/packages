@@ -1,48 +1,24 @@
-# Meteor packages used by this project, one per line.
-#
-# 'meteor add' and 'meteor remove' will edit this file for you,
-# but you can also edit it by hand.
+meteor-base             # Packages every Meteor app needs to have
+mobile-experience       # Packages for a great mobile UX
+mongo                   # The database Meteor supports right now
+blaze-html-templates    # Compile .html files into Meteor Blaze views
+session                 # Client-side reactive dictionary for your app
+jquery                  # Helpful client-side library
+tracker                 # Meteor's client-side reactive programming library
 
-accounts-password
-aldeed:collection2
-audit-argument-checks
-bolide:core
-bolide:hue
-bolide:log
-bolide:service
-browser-policy
-check
-dburles:collection-helpers
-ejson
-fastclick
-http
-jquery
-kadira:react-layout
-less
-logging
-meteor-base
-meteorhacks:fast-render
-meteortoys:allthings
-mobile-experience
-mongo
-mrt:momentjs
-natestrauser:animate-css
-raix:handlebar-helpers
-random
-reload
-semantic:ui-css
-session
-spacebars
-standard-minifiers
-tracker
-underscore
-useraccounts:semantic-ui
-bolide:dependencies
-reactrouter:react-router
-bolide:dash
-bolide:rescue-time
+standard-minifiers      # JS/CSS minifiers run for production mode
+es5-shim                # ECMAScript 5 compatibility for older browsers.
+
 react-runtime
 react-meteor-data
 reactrouter:react-router-ssr
 thereactivestack:blazetoreact
+
+
 webpack:webpack
+accounts-ui
+accounts-password
+bolide:core
+bolide:service
+bolide:hue
+bolide:log

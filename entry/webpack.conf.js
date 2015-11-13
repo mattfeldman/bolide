@@ -1,3 +1,4 @@
+console.log('common-webpack.conf');
 var webpack = require('webpack');
 var path = require('path');
 

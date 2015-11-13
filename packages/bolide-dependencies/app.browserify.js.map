@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "../../../../../../Users/decap/AppData/Local/.meteor/packages/cosmos_browserify/0.5.0/plugin.CosmosBrowserify.os/npm/CosmosBrowserify/node_modules/browserify/node_modules/browser-pack/_prelude.js",
+    "../../../../../../Users/decaprime/AppData/Local/.meteor/packages/cosmos_browserify/0.5.0/plugin.CosmosBrowserify.os/npm/CosmosBrowserify/node_modules/browserify/node_modules/browser-pack/_prelude.js",
     "_stream_0.js",
     "node_modules/react-color/lib/components/Color.js",
     "node_modules/react-color/lib/components/chrome/Chrome.js",

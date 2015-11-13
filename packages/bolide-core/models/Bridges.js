@@ -1,6 +1,6 @@
 Bridges = new Mongo.Collection('Bridges');
 
-Bridges.attachSchema(new SimpleSchema({
+/*Bridges.attachSchema(new SimpleSchema({
         _id:{
             type: String
         },
@@ -14,7 +14,7 @@ Bridges.attachSchema(new SimpleSchema({
             type: Boolean
         }
     })
-);
+);*/
 
 // Collection2 already does schema checking
 // Add custom permission rules if needed

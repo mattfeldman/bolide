@@ -1,3 +1,4 @@
+console.log("\nclient-webpack.conf\n");
 var webpack = require('webpack');
 
 var babelSettings = { stage: 0 };

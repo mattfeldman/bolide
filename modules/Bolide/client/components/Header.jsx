@@ -1,5 +1,5 @@
 import { Component, PropTypes } from 'react';
-import Link from 'react-router';
+import {Link} from 'react-router';
 
 require("../stylesheets/header.less");
 export default class Header extends Component {

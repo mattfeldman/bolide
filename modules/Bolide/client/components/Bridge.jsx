@@ -39,21 +39,21 @@ export default class Bridge extends Component {
                 <div className="ui form">
                     <div className="field">
                         <label for="ip">ip</label>
-                        <input type="text" value={this.state.ip} name="ip" onChange={this.handleIpChange}/>
+                        <input type="text" value={this.state.ip} name="ip" onChange={this.handleIpChange.bind(this)}/>
                     </div>
                     <div className="ui two column middle aligned relaxed grid" style={{position:'relative'}}>
                         <div className="column">
                             <div className="field">
                                 <label for="username">username</label>
-                                <input type="text" value={this.state.username} onChange={this.handleUsernameChange} name="username"/>
+                                <input type="text" value={this.state.username} onChange={this.handleUsernameChange.bind(this)} name="username"/>
                             </div>
-                            <button className="ui button" type="submit" onClick={this.clickUpdate}>Update Bridge</button>
+                            <button className="ui button" type="submit" onClick={this.clickUpdate.bind(this)}>Update Bridge</button>
                         </div>
                         <div className="ui vertical divider">
                             Or
                         </div>
                         <div className="center aligned column">
-                            <div className="ui primary icon button" onClick={this.clickSync}><i className="ui wifi icon"></i>Sync</div>
+                            <div className="ui primary icon button" onClick={this.clickSync.bind(this)}><i className="ui wifi icon"></i>Sync</div>
                         </div>
                     </div>
                 </div>

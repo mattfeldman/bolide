@@ -1,5 +1,6 @@
 import ReactMixin from 'react-mixin';
 import { Component, PropTypes } from 'react';
+import ColorPicker from 'react-color';
 
 @ReactMixin.decorate(ReactMeteorData)
 export default class Light extends Component {
@@ -35,7 +36,7 @@ export default class Light extends Component {
         Meteor.call('setLightRandom', this.props.id);
     }
     onColorChange(e){
-        let rgb =  _(e.rgb).omit('a');
+        let rgb =  _.omit(e.rgb,'a');
         this.setState({rgb});
         Meteor.call('setLightColor', this.props.id, rgb.r, rgb.g, rgb.b);
     }
@@ -54,21 +55,21 @@ export default class Light extends Component {
                     <div className="header" style={this.headerStyle()}>{this.props.light.raw.name}</div>
                 </div>
                 <div className="content">
-                    <input id="brightness" type="range" min="1" max="254" onChange={this.briSlider} value={this.state.bri} step="1"/>
+                    <input id="brightness" type="range" min="1" max="254" onChange={this.briSlider.bind(this)} value={this.state.bri} step="1"/>
                 </div>
                 <div className="content">
-                    <div className="ui button" onClick={this.clickPickColor}>pick color</div>
+                    <div className="ui button" onClick={this.clickPickColor.bind(this)}>pick color</div>
                     <div>
-                        <ColorPicker type="photoshop" color={this.state.rgb} position="below" display={this.state.showColor} onChange={this.onColorChange}/>
+                        <ColorPicker type="photoshop" color={this.state.rgb} position="below" display={this.state.showColor} onChange={this.onColorChange.bind(this)}/>
                     </div>
                 </div>
                 <div className="extra content">
                     <div className="ui left floated toggle checkbox">
-                        <input id={this.props.light.raw.uniqueid} onChange={this.onToggleChange} type="checkbox" name="toggle" checked={this.state.on}>
+                        <input id={this.props.light.raw.uniqueid} onChange={this.onToggleChange.bind(this)} type="checkbox" name="toggle" checked={this.state.on}>
                             <label htmlFor={this.props.light.raw.uniqueid}>{this.state.on ? 'On' : 'Off'}</label>
                         </input>
                     </div>
-                    <div className="ui right floated small icon purple basic button random" onClick={this.clickRandom}><i className="random icon"></i></div>
+                    <div className="ui right floated small icon purple basic button random" onClick={this.clickRandom.bind(this)}><i className="random icon"></i></div>
                 </div>
             </div>
         );

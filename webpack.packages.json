@@ -15,5 +15,6 @@
   "babel-plugin-react-transform": "^1.1.1",
   "react-transform-hmr": "^1.0.1",
   "react-transform-catch-errors": "^1.0.0",
-  "redbox-react": "^1.1.1"
+  "redbox-react": "^1.1.1",
+  "react-color": "1.1.1"
 }

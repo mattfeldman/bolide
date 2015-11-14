@@ -1,5 +1,6 @@
 import { Component, PropTypes } from 'react';
 import ReactMixin from 'react-mixin';
+import Light from './Light.jsx';
 
 @ReactMixin.decorate(ReactMeteorData)
 export default class LightPanel extends Component {

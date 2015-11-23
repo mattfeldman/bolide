@@ -25,6 +25,5 @@ bolide:hue
 bolide:log
 semantic:ui-css
 momentjs:moment
-session
-tracker
 underscore
+bolide:rescue-time

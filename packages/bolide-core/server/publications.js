@@ -14,3 +14,7 @@ Meteor.publish('bridge', function () {
 Meteor.publish('manualLightState', function () {
     return LightStates.find({_id:"manual"});
 });
+
+Meteor.publish('scenes', function () {
+    return Scenes.find({});
+});

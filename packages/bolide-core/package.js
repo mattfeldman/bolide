@@ -21,10 +21,20 @@ Package.onUse(function(api) {
     api.addFiles('models/Bridges.js');
     api.addFiles('models/Lights.js');
     api.addFiles('models/LightStates.js');
+    api.addFiles('models/Scenes.js');
 
     api.addFiles('server/bridgeMethods.js');
     api.addFiles('server/lightMethods.js');
     api.addFiles('server/publications.js', 'server');
 
-    api.export(['Bridges', 'Lights', 'LightStates','LightState', 'ManualState', 'BolidePlugin', 'PluginSettings']);
+    api.export([
+        'Bridges',
+        'Lights',
+        'LightStates',
+        'Scenes',
+        'LightState',
+        'ManualState',
+        'BolidePlugin',
+        'PluginSettings'
+    ]);
 });

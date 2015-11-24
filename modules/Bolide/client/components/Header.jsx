@@ -12,6 +12,7 @@ export default class Header extends Component {
             <div className="ui page grid">
                 <div className="ui inverted center labeled aligned secondary pointing menu">
                     <Link to="/lights" activeClassName="active" className="item"><i className="idea icon"></i> Lights</Link>
+                    <Link to="/scenes" activeClassName="active" className="item"><i className="camera icon"></i> Scenes</Link>
                     <Link to="/bridge" activeClassName="active" className="item"><i className="wifi icon"></i> Bridges</Link>
                     <Link to="/logs" activeClassName="active" className="item"><i className="browser icon"></i> Logs</Link>
                     <Link to="/plugins" activeClassName="active" className="item"><i className="puzzle icon"></i> Plugins</Link>

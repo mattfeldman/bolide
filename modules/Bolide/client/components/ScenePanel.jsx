@@ -4,6 +4,7 @@ import Light from './Light.jsx';
 import ColorPicker from 'react-color';
 import CheckboxGroup from 'react-checkbox-group';
 import classNames from 'classnames';
+
 @ReactMixin.decorate(ReactMeteorData)
 export default class ScenePanel extends Component {
     state = {lights:[], showColor: false, substate:{}, subselection:[]};
@@ -61,12 +62,18 @@ export default class ScenePanel extends Component {
             newSubState[id] = _.extend(
                 newSubState[id] || {},
                 {
-                    on: this.state.enabledOn ? this.state.on : undefined,
-                    bri: this.state.enabledBri ? this.state.bri : undefined,
-                    color: this.state.enabledColor ? this.state.rgb : undefined
+                    on: this.state.enabledOn ? this.state.on : null,
+                    bri: this.state.enabledBri ? this.state.bri : null,
+                    color: this.state.enabledColor ? this.state.rgb : null
                 });
         });
         this.setState({substate: newSubState});
+    }
+    onStateNameChange(e){
+        this.setState({stateName: e.target.value});
+    }
+    onSaveState(){
+        Meteor.call('setScene', this.state.stateName, this.state.substate);
     }
     render(){
         if (!this.data.loaded){
@@ -92,6 +99,10 @@ export default class ScenePanel extends Component {
                   </tbody>
               </table>
               </CheckboxGroup>
+              <div className="ui action input">
+                  <input type="text" placeholder="Name this state" value={this.state.stateName} onChange={this.onStateNameChange.bind(this)} />
+                  <button className="ui button" onClick={this.onSaveState.bind(this)}>Save</button>
+              </div>
           </div>
         );
     }

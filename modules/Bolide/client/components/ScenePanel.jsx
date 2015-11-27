@@ -88,10 +88,12 @@ export default class ScenePanel extends Component {
         return (
             <div className="ui container" ref="root">
                 <h1 className="ui header">Scenes</h1>
+                <div className="ui dividing header">Light Selection</div>
                 <div className="container">
                     <LightSelector lights={this.data.lights}
                                    onSelectionChange={this.onLightSelectionChange.bind(this)}/>
                 </div>
+                <div className="ui dividing header">Scene Configuration</div>
                 <CheckboxGroup name="subselection"
                                ref="subSelectionGroup"
                                onChange={this.subSelectionChange.bind(this)}>
@@ -100,8 +102,11 @@ export default class ScenePanel extends Component {
                         <tbody>{this.state.lights.map(light => this.renderStateRow(light))}</tbody>
                     </table>
                 </CheckboxGroup>
-                <div className="ui action input">
+                <div className="ui dividing header">Load and Save Scene</div>
+                <div className="ui fluid action labeled input">
+                    <div className="ui label">Scene Name</div>
                     <input type="text"
+                           name="sceneName"
                            placeholder="Name this state"
                            value={this.state.stateName}
                            onChange={this.onStateNameChange.bind(this)}/>
@@ -225,13 +230,16 @@ class LightSelector extends Component {
 
     render() {
         return (
-            <select name="lights"
-                    id="lightSelector"
-                    ref="lightSelectionRef"
-                    className="ui multiple search selection dropdown"
-                    multiple>
-                <option/>
-                {_.values(this.props.lights).map( light =>  <option value={light._id}>{light.raw.name}</option>)}
-            </select>);
+            <div className="ui labeled fluid input">
+                <div className="ui label">Scene Lights</div>
+                <select name="lights"
+                        id="lightSelector"
+                        ref="lightSelectionRef"
+                        className="ui multiple fluid search selection dropdown"
+                        multiple>
+                    <option/>
+                    {_.values(this.props.lights).map( light =>  <option value={light._id}>{light.raw.name}</option>)}
+                </select>
+            </div>);
     }
 }

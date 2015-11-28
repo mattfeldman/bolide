@@ -18,7 +18,14 @@ export default class ScenePanel extends Component {
             lights: _.indexBy(lights.fetch(), '_id'),
             scenes: scenes.fetch()
         }
+    }
 
+    onSceneLoad(name) {
+        let scene = Scenes.findOne(name);
+        this.setState({
+            lights: _.keys(scene.substate),
+            substate:  scene.substate
+        });
     }
 
     onLightSelectionChange(lights) {
@@ -102,15 +109,25 @@ export default class ScenePanel extends Component {
                         <tbody>{this.state.lights.map(light => this.renderStateRow(light))}</tbody>
                     </table>
                 </CheckboxGroup>
-                <div className="ui dividing header">Load and Save Scene</div>
-                <div className="ui fluid action labeled input">
-                    <div className="ui label">Scene Name</div>
-                    <input type="text"
-                           name="sceneName"
-                           placeholder="Name this state"
-                           value={this.state.stateName}
-                           onChange={this.onStateNameChange.bind(this)}/>
-                    <button className="ui button" onClick={this.onSaveState.bind(this)}>Save</button>
+                <div className="ui divider"></div>
+                <div className="ui two column equal width grid">
+                    <div className="column">
+                        <div className="ui dividing header">Save Scene</div>
+                        <div className="ui fluid action labeled input">
+                            <div className="ui label">Scene Name</div>
+                            <input type="text"
+                                   name="sceneName"
+                                   placeholder="Name this state"
+                                   value={this.state.stateName}
+                                   onChange={this.onStateNameChange.bind(this)}/>
+                            <button className="ui button" onClick={this.onSaveState.bind(this)}>Save</button>
+                        </div>
+                    </div>
+                    <div className="column">
+                        <div className="ui dividing header">Load Scene</div>
+                        <SceneSelector scenes={this.data.scenes}
+                                       onSceneLoad={this.onSceneLoad.bind(this)}/>
+                    </div>
                 </div>
             </div>
         );
@@ -240,6 +257,46 @@ class LightSelector extends Component {
                     <option/>
                     {_.values(this.props.lights).map( light =>  <option value={light._id}>{light.raw.name}</option>)}
                 </select>
+            </div>);
+    }
+}
+
+class SceneSelector extends Component {
+    static propTypes = {
+        scenes: React.PropTypes.object.isRequired,
+        onSceneLoad: React.PropTypes.func.isRequired,
+        onSceneRemove: React.PropTypes.func,
+    };
+
+    componentDidMount() {
+        let self = this;
+        $(self.refs.sceneSelectionRef.getDOMNode()).dropdown({
+            onChange(value){
+                self.setState({selected: value});
+            }
+        });
+    }
+
+    loadClick() {
+        this.props.onSceneLoad(this.state.selected);
+    }
+
+    removeClick() {
+        this.props.onSceneRemove(this.state.selected);
+    }
+
+    render() {
+        return (
+            <div className="ui attached action labeled fluid input">
+                <div className="ui label">Scenes</div>
+                <select name="scenes"
+                        ref="sceneSelectionRef"
+                        className="ui fluid search selection dropdown">
+                    <option/>
+                    {_.values(this.props.scenes).map( scene =>  <option value={scene._id}>{scene.name}</option>)}
+                </select>
+                <button className="ui primary button" onClick={this.loadClick.bind(this)}>Load</button>
+                {this.props.onSceneRemove ? <button className="ui red button" onClick={this.loadClick.bind(this)}>Delete</button> : null}
             </div>);
     }
 }

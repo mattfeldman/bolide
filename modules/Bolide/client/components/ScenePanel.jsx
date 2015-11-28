@@ -71,6 +71,9 @@ export default class ScenePanel extends Component {
     onCheckColor(e) {
         this.setState({enabledColor: e.target.checked});
     }
+    colorPickerClose(e){
+        this.setState({showColor: false});
+    }
 
     saveClick() {
         var newSubState = _.clone(this.state.substate);
@@ -210,7 +213,7 @@ export default class ScenePanel extends Component {
                 <th className="column">
                     <div className="ui toggle checkbox">
                         <input type="checkbox" name="public" onChange={this.onToggleOnChange.bind(this)}/>
-                        <label>Enabled</label>
+                        <label>{this.state.on ? 'On' : 'Off'}</label>
                     </div>
                 </th>
                 <th>
@@ -224,12 +227,13 @@ export default class ScenePanel extends Component {
                 </th>
                 <th>
                     <div className="ui button" onClick={this.clickPickColor.bind(this)}>pick color</div>
-                    <div>
+                    <div >
                         <ColorPicker type="photoshop"
                                      color={this.state.rgb}
-                                     position="below"
+                                     position="above"
                                      display={this.state.showColor}
-                                     onChange={this.onColorChange.bind(this)}/>
+                                     onChange={this.onColorChange.bind(this)}
+                                     onClose={this.colorPickerClose.bind(this)}/>
                     </div>
                 </th>
             </tr>
@@ -237,10 +241,11 @@ export default class ScenePanel extends Component {
         );
     }
 };
+
 class LightSelector extends Component {
     static propTypes = {
-        lights: React.PropTypes.object,
-        onSelectionChange: React.PropTypes.func
+        lights: React.PropTypes.object.isRequired,
+        onSelectionChange: React.PropTypes.func.isRequired,
     };
 
     componentDidMount() {

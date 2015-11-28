@@ -24,8 +24,14 @@ export default class ScenePanel extends Component {
         let scene = Scenes.findOne(name);
         this.setState({
             lights: _.keys(scene.substate),
-            substate:  scene.substate
+            substate:  scene.substate,
+            sceneName: scene.name,
+            sceneId: scene._id
         });
+    }
+
+    onSceneRemove(name) {
+        Meteor.call('removeScene', name)
     }
 
     onLightSelectionChange(lights) {
@@ -81,11 +87,11 @@ export default class ScenePanel extends Component {
     }
 
     onStateNameChange(e) {
-        this.setState({stateName: e.target.value});
+        this.setState({sceneName: e.target.value});
     }
 
-    onSaveState() {
-        Meteor.call('setScene', this.state.stateName, this.state.substate);
+    onSaveScene() {
+        Meteor.call('setScene', this.state.sceneName, this.state.substate, this.state.sceneId);
     }
 
     render() {
@@ -118,15 +124,16 @@ export default class ScenePanel extends Component {
                             <input type="text"
                                    name="sceneName"
                                    placeholder="Name this state"
-                                   value={this.state.stateName}
+                                   value={this.state.sceneName}
                                    onChange={this.onStateNameChange.bind(this)}/>
-                            <button className="ui button" onClick={this.onSaveState.bind(this)}>Save</button>
+                            <button className="ui button" onClick={this.onSaveScene.bind(this)}>Save</button>
                         </div>
                     </div>
                     <div className="column">
                         <div className="ui dividing header">Load Scene</div>
                         <SceneSelector scenes={this.data.scenes}
-                                       onSceneLoad={this.onSceneLoad.bind(this)}/>
+                                       onSceneLoad={this.onSceneLoad.bind(this)}
+                                       onSceneRemove={this.onSceneRemove.bind(this)}/>
                     </div>
                 </div>
             </div>
@@ -283,6 +290,7 @@ class SceneSelector extends Component {
 
     removeClick() {
         this.props.onSceneRemove(this.state.selected);
+        $(this.refs.sceneSelectionRef.getDOMNode()).dropdown('clear');
     }
 
     render() {
@@ -296,7 +304,7 @@ class SceneSelector extends Component {
                     {_.values(this.props.scenes).map( scene =>  <option value={scene._id}>{scene.name}</option>)}
                 </select>
                 <button className="ui primary button" onClick={this.loadClick.bind(this)}>Load</button>
-                {this.props.onSceneRemove ? <button className="ui red button" onClick={this.loadClick.bind(this)}>Delete</button> : null}
+                {this.props.onSceneRemove ? <button className="ui red button" onClick={this.removeClick.bind(this)}>Delete</button> : null}
             </div>);
     }
 }

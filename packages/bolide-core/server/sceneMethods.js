@@ -13,5 +13,9 @@ Meteor.methods({
         }
 
         Scenes.upsert({_id: id}, {name: name, substate: substate});
+    },
+    removeScene(id){
+        check(id, String);
+        Scenes.remove({_id: id});
     }
 });

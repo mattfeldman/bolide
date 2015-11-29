@@ -1,8 +1,12 @@
 import { Component, PropTypes } from 'react';
 import ReactMixin from 'react-mixin';
-import ColorPicker from 'react-color';
 import CheckboxGroup from 'react-checkbox-group';
 import classNames from 'classnames';
+
+import LightToggle from './LightToggle';
+import ColorPickerPopup from './ColorPickerPopup';
+import LightSelector from './LightSelector';
+import SceneSelector from './SceneSelector';
 
 @ReactMixin.decorate(ReactMeteorData)
 export default class ScenePanel extends Component {
@@ -146,10 +150,7 @@ export default class ScenePanel extends Component {
                     </div>
                 </td>
                 <td>
-                    <div className={classNames('ui toggle checkbox', {'checked': rowState.on, 'disabled': rowState.on == null})}>
-                        <input type="checkbox" value={light}/>
-                        <label>{{true: 'On', false: 'Off', null: 'Not Included'}[rowState.on]}</label>
-                    </div>
+                    <LightToggle value={rowState.on}/>
                 </td>
                 <td>
                     <input id="brightness"
@@ -225,116 +226,3 @@ export default class ScenePanel extends Component {
         );
     }
 };
-
-class ColorPickerPopup extends Component {
-    state = {showColor: false};
-    static propTypes = {
-        rgb: React.PropTypes.object.isRequired,
-        onColorChange: React.PropTypes.func.isRequired
-    };
-
-    colorPickerClose(e){
-        this.setState({showColor: false});
-    }
-
-    onColorChange(e){
-        let rgb = _.omit(e.rgb, 'a');
-        this.props.onColorChange(rgb);
-    }
-
-    clickPickColor(e) {
-        this.setState({showColor: !this.state.showColor});
-    }
-
-    render(){
-        let {r,g,b} = this.props.rgb || {};
-        let colorStyle = {'background-color': `rgb(${r},${g},${b})`};
-        return(
-            <div>
-                <div className="ui right labeled basic icon button" onClick={this.clickPickColor.bind(this)}>set color
-                    <i className="icon" style={colorStyle}></i>
-                </div>
-                <div >
-                    <ColorPicker type="photoshop"
-                                 color={this.props.rgb}
-                                 position="above"
-                                 display={this.state.showColor}
-                                 onChange={this.onColorChange.bind(this)}
-                                 onClose={this.colorPickerClose.bind(this)}/>
-                </div>
-            </div>
-        );
-    }
-}
-
-class LightSelector extends Component {
-    static propTypes = {
-        lights: React.PropTypes.object.isRequired,
-        onSelectionChange: React.PropTypes.func.isRequired,
-    };
-
-    componentDidMount() {
-        let self = this;
-        $(self.refs.lightSelectionRef.getDOMNode()).dropdown({
-            onChange(value){
-                self.props.onSelectionChange(value);
-            }
-        });
-    }
-
-    render() {
-        return (
-            <div className="ui labeled fluid input">
-                <div className="ui label">Scene Lights</div>
-                <select name="lights"
-                        id="lightSelector"
-                        ref="lightSelectionRef"
-                        className="ui multiple fluid search selection dropdown"
-                        multiple>
-                    <option/>
-                    {_.values(this.props.lights).map( light =>  <option value={light._id}>{light.raw.name}</option>)}
-                </select>
-            </div>);
-    }
-}
-
-class SceneSelector extends Component {
-    static propTypes = {
-        scenes: React.PropTypes.object.isRequired,
-        onSceneLoad: React.PropTypes.func.isRequired,
-        onSceneRemove: React.PropTypes.func,
-    };
-
-    componentDidMount() {
-        let self = this;
-        $(self.refs.sceneSelectionRef.getDOMNode()).dropdown({
-            onChange(value){
-                self.setState({selected: value});
-            }
-        });
-    }
-
-    loadClick() {
-        this.props.onSceneLoad(this.state.selected);
-    }
-
-    removeClick() {
-        this.props.onSceneRemove(this.state.selected);
-        $(this.refs.sceneSelectionRef.getDOMNode()).dropdown('clear');
-    }
-
-    render() {
-        return (
-            <div className="ui attached action labeled fluid input">
-                <div className="ui label">Scenes</div>
-                <select name="scenes"
-                        ref="sceneSelectionRef"
-                        className="ui fluid search selection dropdown">
-                    <option/>
-                    {_.values(this.props.scenes).map( scene =>  <option value={scene._id}>{scene.name}</option>)}
-                </select>
-                <button className="ui primary button" onClick={this.loadClick.bind(this)}>Load</button>
-                {this.props.onSceneRemove ? <button className="ui red button" onClick={this.removeClick.bind(this)}>Delete</button> : null}
-            </div>);
-    }
-}

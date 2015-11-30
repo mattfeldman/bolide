@@ -204,10 +204,7 @@ export default class ScenePanel extends Component {
                     </div>
                 </th>
                 <th className="column">
-                    <div className="ui toggle checkbox">
-                        <input type="checkbox" name="public" onChange={this.onToggleOnChange.bind(this)}/>
-                        <label>{this.state.on ? 'On' : 'Off'}</label>
-                    </div>
+                    <LightToggle value={this.state.on} onChange={this.onToggleOnChange.bind(this)}/>
                 </th>
                 <th>
                     <input id="brightness"

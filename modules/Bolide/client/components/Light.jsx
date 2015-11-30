@@ -1,13 +1,14 @@
 import ReactMixin from 'react-mixin';
 import { Component, PropTypes } from 'react';
 import ColorPicker from 'react-color';
+import LightToggle from './LightToggle';
 
 @ReactMixin.decorate(ReactMeteorData)
 export default class Light extends Component {
-    propTypes:{
-        id: React.PropTypes.string,
-        light: React.PropTypes.object
-    }
+    static propTypes = {
+        id: React.PropTypes.string.isRequired,
+        light: React.PropTypes.object.isRequired
+    };
 
     state = {bri: 0, on: false, rgb: {r:125,g:125,b:125}, showColor: false};
 
@@ -64,11 +65,7 @@ export default class Light extends Component {
                     </div>
                 </div>
                 <div className="extra content">
-                    <div className="ui left floated toggle checkbox">
-                        <input id={this.props.light.raw.uniqueid} onChange={this.onToggleChange.bind(this)} type="checkbox" name="toggle" checked={this.state.on}>
-                            <label htmlFor={this.props.light.raw.uniqueid}>{this.state.on ? 'On' : 'Off'}</label>
-                        </input>
-                    </div>
+                    <LightToggle value={this.state.on} onChange={this.onToggleChange.bind(this)}/>
                     <div className="ui right floated small icon purple basic button random" onClick={this.clickRandom.bind(this)}><i className="random icon"></i></div>
                 </div>
             </div>

@@ -3,8 +3,11 @@ import classNames from 'classnames';
 
 export default class LightToggle extends Component {
     static propTypes = {
-        value: React.PropTypes.bool.isRequired,
+        value: React.PropTypes.bool.isRequired, // null is treated as disabled
         onChange: React.PropTypes.func
+    };
+    static defaultProps = {
+        value: false
     };
 
     render() {

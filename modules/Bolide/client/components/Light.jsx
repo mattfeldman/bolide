@@ -1,7 +1,8 @@
 import ReactMixin from 'react-mixin';
 import { Component, PropTypes } from 'react';
-import ColorPicker from 'react-color';
+
 import LightToggle from './LightToggle';
+import ColorPickerPopup from './ColorPickerPopup';
 
 @ReactMixin.decorate(ReactMeteorData)
 export default class Light extends Component {
@@ -36,8 +37,7 @@ export default class Light extends Component {
     clickRandom(){
         Meteor.call('setLightRandom', this.props.id);
     }
-    onColorChange(e){
-        let rgb =  _.omit(e.rgb,'a');
+    onColorChange(rgb){
         this.setState({rgb});
         Meteor.call('setLightColor', this.props.id, rgb.r, rgb.g, rgb.b);
     }
@@ -59,10 +59,7 @@ export default class Light extends Component {
                     <input id="brightness" type="range" min="1" max="254" onChange={this.briSlider.bind(this)} value={this.state.bri} step="1"/>
                 </div>
                 <div className="content">
-                    <div className="ui button" onClick={this.clickPickColor.bind(this)}>pick color</div>
-                    <div>
-                        <ColorPicker type="photoshop" color={this.state.rgb} position="below" display={this.state.showColor} onChange={this.onColorChange.bind(this)}/>
-                    </div>
+                    <ColorPickerPopup value={this.state.rgb} onChange={this.onColorChange.bind(this)}/>
                 </div>
                 <div className="extra content">
                     <LightToggle value={this.state.on} onChange={this.onToggleChange.bind(this)}/>

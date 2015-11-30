@@ -216,7 +216,7 @@ export default class ScenePanel extends Component {
                            step="1"/>
                 </th>
                 <th>
-                    <ColorPickerPopup rgb={this.state.rgb} onColorChange={this.onColorChange.bind(this)} />
+                    <ColorPickerPopup value={this.state.rgb} onChange={this.onColorChange.bind(this)} />
                 </th>
             </tr>
             </thead>

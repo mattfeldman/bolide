@@ -47,7 +47,7 @@ export default class ScenePanel extends Component {
     }
 
     onBriChange(e) {
-        this.setState({bri: e.target.value});
+        this.setState({bri: parseInt(e.target.value)});
     }
 
     onToggleOnChange(e) {
@@ -79,7 +79,7 @@ export default class ScenePanel extends Component {
                 {
                     on: this.state.enabledOn ? this.state.on : null,
                     bri: this.state.enabledBri ? this.state.bri : null,
-                    color: this.state.enabledColor ? this.state.rgb : null
+                    rgb: this.state.enabledColor ? this.state.rgb : null
                 });
         });
         this.setState({substate: newSubState});
@@ -140,7 +140,7 @@ export default class ScenePanel extends Component {
     }
 
     renderStateRow(light) {
-        let rowState = _.defaults(this.state.substate[light] || {}, {on: null, bri: null, color: null});
+        let rowState = _.defaults(this.state.substate[light] || {}, {on: null, bri: null, rgb: null});
         return (
             <tr>
                 <td>
@@ -162,8 +162,8 @@ export default class ScenePanel extends Component {
                            step="1"/>
                 </td>
                 <td>
-                    {rowState.color == null ? "Not Included" :
-                    <div style={{width: 50, height: 30, 'background-color': `rgb(${rowState.color.r},${rowState.color.g},${rowState.color.b})`}}>
+                    {rowState.rgb == null ? "Not Included" :
+                    <div style={{width: 50, height: 30, 'background-color': `rgb(${rowState.rgb.r},${rowState.rgb.g},${rowState.rgb.b})`}}>
                     </div>
                         }
                 </td>

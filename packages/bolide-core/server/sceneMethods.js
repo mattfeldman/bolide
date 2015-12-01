@@ -1,3 +1,4 @@
+const manual = new ManualState();
 Meteor.methods({
     setScene(name, substate, id = null){
         check(name, String);
@@ -17,5 +18,15 @@ Meteor.methods({
     removeScene(id){
         check(id, String);
         Scenes.remove({_id: id});
+    },
+    applySceneById(id){
+        check(id, String);
+        let scene = Scenes.findOne({_id: id});
+        check(scene, Object);
+
+        for( id in scene.substate){
+            manual.clearState(id);
+            manual.setLight(id, scene.substate[id]);
+        }
     }
 });

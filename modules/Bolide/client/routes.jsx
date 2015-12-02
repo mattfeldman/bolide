@@ -19,7 +19,7 @@ export default (
         <Route path="schedule" component={SchedulePanel} />
         <Route path="/plugins" component={PluginLayout}>
             <Route path="/" component=""/>
-            {BolidePlugin.list.map(p => <Route path={p.name} component={p.component}/>)}
+            {BolidePlugin.list.map(p => <Route key={p.name} path={p.name} component={p.component}/>)}
         </Route>
     </Route>
 );

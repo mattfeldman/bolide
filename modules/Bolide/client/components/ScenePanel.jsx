@@ -110,7 +110,7 @@ export default class ScenePanel extends Component {
                                ref="subSelectionGroup"
                                onChange={this.subSelectionChange.bind(this)}>
                     <table className="ui divided table">
-                        <thead>{this.renderControlPanelTable()}</thead>
+                        {this.renderControlPanelTable()}
                         <tbody>{this.state.lights.map(light => this.renderStateRow(light))}</tbody>
                     </table>
                 </CheckboxGroup>
@@ -163,7 +163,7 @@ export default class ScenePanel extends Component {
                 </td>
                 <td>
                     {rowState.rgb == null ? "Not Included" :
-                    <div style={{width: 50, height: 30, 'background-color': `rgb(${rowState.rgb.r},${rowState.rgb.g},${rowState.rgb.b})`}}>
+                    <div style={{width: 50, height: 30, 'backgroundColor': `rgb(${rowState.rgb.r},${rowState.rgb.g},${rowState.rgb.b})`}}>
                     </div>
                         }
                 </td>

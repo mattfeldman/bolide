@@ -25,7 +25,7 @@ export default class LightPanel extends Component {
                   {this.renderAllOff()}
               </h1>
               <div className="ui four cards">
-                  {this.data.lights.map(light =>  <Light light={light} id={light._id}/>)}
+                  {this.data.lights.map(light =>  <Light key={light._id} light={light} id={light._id}/>)}
               </div>
           </div>
         );

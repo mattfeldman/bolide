@@ -38,13 +38,13 @@ export default class Logs extends Component {
     }
     renderLoading(){
         return (
-            <div class="ui active centered large inline loader">Loading...</div>
+            <div className="ui active centered large inline loader">Loading...</div>
         );
     }
     render() {
         return (
             <div>
-                <h1 class="ui header">Logs</h1>
+                <h1 className="ui header">Logs</h1>
                 {this.data.loading ? this.renderLoading() : this.renderTable()}
             </div>
         );

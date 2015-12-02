@@ -7,6 +7,9 @@ export default class ColorPickerPopup extends Component {
         value: React.PropTypes.object.isRequired,
         onChange: React.PropTypes.func.isRequired
     };
+    static defaultProps = {
+        value: {r: 255, g: 255, b: 255}
+    };
 
     rgbToHex(r, g, b) {
         let componentToHex = (c) => {
@@ -32,7 +35,7 @@ export default class ColorPickerPopup extends Component {
     render(){
         let readOnly = !!this.props.onColorChange;
         let {r,g,b} = this.props.value || {};
-        let colorStyle = {'background-color': `rgb(${r},${g},${b})`};
+        let colorStyle = {'backgroundColor': `rgb(${r},${g},${b})`};
         return(
             <div>
                 <div className="ui right labeled basic icon button" onClick={this.clickPickColor.bind(this)}>set color

@@ -16,7 +16,9 @@
   "react-transform-hmr": "^1.0.1",
   "react-transform-catch-errors": "^1.0.0",
   "redbox-react": "^1.1.1",
-  "react-color": "1.1.1",
+  "react-color": "1.2.1",
   "react-checkbox-group": "0.2.2",
-  "classnames" : "2.2.0"
+  "classnames" : "2.2.0",
+  "react": "0.14.1",
+  "react-dom": "0.14.1"
 }

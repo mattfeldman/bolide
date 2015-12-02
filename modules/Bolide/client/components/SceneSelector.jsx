@@ -1,7 +1,7 @@
 import { Component, PropTypes } from 'react';
 export default class SceneSelector extends Component {
     static propTypes = {
-        scenes: React.PropTypes.object.isRequired,
+        scenes: React.PropTypes.array.isRequired,
         onSceneLoad: React.PropTypes.func.isRequired,
         onSceneRemove: React.PropTypes.func,
     };
@@ -32,7 +32,7 @@ export default class SceneSelector extends Component {
                         ref="sceneSelectionRef"
                         className="ui fluid search selection dropdown">
                     <option/>
-                    {_.values(this.props.scenes).map( scene =>  <option value={scene._id}>{scene.name}</option>)}
+                    {_.values(this.props.scenes).map( scene =>  <option key={scene._id} value={scene._id}>{scene.name}</option>)}
                 </select>
                 <button className="ui primary button" onClick={this.loadClick.bind(this)}>Load</button>
                 {this.props.onSceneRemove ? <button className="ui red button" onClick={this.removeClick.bind(this)}>Delete</button> : null}

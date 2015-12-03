@@ -31,3 +31,19 @@ export default class SceneSelectPanel extends Component {
         );
     }
 };
+
+class Schedule extends Component {
+    static propTypes = {
+        SceneName: React.PropTypes.string,
+        EnabledDays: React.PropTypes.shape({
+            sunday: React.PropTypes.bool,
+            monday: React.PropTypes.bool,
+            tuesday: React.PropTypes.bool,
+            wednesday: React.PropTypes.bool,
+            thursday: React.PropTypes.bool,
+            friday: React.PropTypes.bool,
+            saturday: React.PropTypes.bool
+        }),
+        Time: React.PropTypes.string
+    }
+}

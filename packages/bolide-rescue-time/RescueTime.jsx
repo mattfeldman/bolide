@@ -56,7 +56,7 @@ RescueTimeKey = React.createClass({
                 <div className="field">
                     <label>Select Light</label>
                     <select onChange={this.lightChange} value={this.state.light} ref="lightSelect">
-                        {this.props.lights.map(l =><option value={l._id}>{l._id} - {l.raw.name}</option>)}
+                        {this.props.lights.map(l =><option key={l._id} value={l._id}>{l._id} - {l.raw.name}</option>)}
                     </select>
                 </div>
                 <button className="ui button" type="submit">Save</button>
@@ -74,7 +74,7 @@ RescueTimeKey = React.createClass({
         this.setState({enabled:e.target.checked});
     },
     lightChange(e){
-        let light = React.findDOMNode(this.refs.lightSelect).value;
+        let light = ReactDOM.findDOMNode(this.refs.lightSelect).value;
         this.setState({light: light});
     },
     componentWillReceiveProps(newProp){

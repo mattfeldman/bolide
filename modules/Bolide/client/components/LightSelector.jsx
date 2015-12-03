@@ -7,7 +7,7 @@ export default class LightSelector extends Component {
 
     componentDidMount() {
         let self = this;
-        $(self.refs.lightSelectionRef.getDOMNode()).dropdown({
+        $(self.refs.lightSelectionRef).dropdown({
             onChange(value){
                 self.props.onSelectionChange(value);
             }

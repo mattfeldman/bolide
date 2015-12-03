@@ -25,7 +25,7 @@ export default class SceneSelectPanel extends Component {
             <div className="ui container">
                 <h1 className="ui header">Scene</h1>
                 <div className="ui buttons">
-                    {this.data.scenes.map(scene => <div className="ui button" onClick={this.loadSceneClick.bind(this, scene)}>{scene.name}</div>)}
+                    {this.data.scenes.map(scene => <div className="ui button" key={scene._id} onClick={this.loadSceneClick.bind(this, scene)}>{scene.name}</div>)}
                 </div>
             </div>
         );

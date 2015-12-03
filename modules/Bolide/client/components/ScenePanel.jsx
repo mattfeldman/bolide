@@ -142,7 +142,7 @@ export default class ScenePanel extends Component {
     renderStateRow(light) {
         let rowState = _.defaults(this.state.substate[light] || {}, {on: null, bri: null, rgb: null});
         return (
-            <tr>
+            <tr key={light._id}>
                 <td>
                     <div className="ui checkbox">
                         <input type="checkbox" value={light}/>

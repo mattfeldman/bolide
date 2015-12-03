@@ -8,7 +8,7 @@ export default class SceneSelector extends Component {
 
     componentDidMount() {
         let self = this;
-        $(self.refs.sceneSelectionRef.getDOMNode()).dropdown({
+        $(self.refs.sceneSelectionRef).dropdown({
             onChange(value){
                 self.setState({selected: value});
             }
@@ -21,7 +21,7 @@ export default class SceneSelector extends Component {
 
     removeClick() {
         this.props.onSceneRemove(this.state.selected);
-        $(this.refs.sceneSelectionRef.getDOMNode()).dropdown('clear');
+        $(this.refs.sceneSelectionRef).dropdown('clear');
     }
 
     render() {

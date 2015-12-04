@@ -26,6 +26,7 @@ Package.onUse(function(api) {
     api.addFiles('server/bridgeMethods.js');
     api.addFiles('server/lightMethods.js');
     api.addFiles('server/sceneMethods.js');
+    api.addFiles('server/scheduleMethods.js');
     api.addFiles('server/publications.js', 'server');
 
     api.export([

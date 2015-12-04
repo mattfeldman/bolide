@@ -4,6 +4,7 @@ export default class SceneSelector extends Component {
         scenes: React.PropTypes.array.isRequired,
         onSceneLoad: React.PropTypes.func.isRequired,
         onSceneRemove: React.PropTypes.func,
+        onChange: React.PropTypes.func,
     };
 
     componentDidMount() {
@@ -11,6 +12,7 @@ export default class SceneSelector extends Component {
         $(self.refs.sceneSelectionRef).dropdown({
             onChange(value){
                 self.setState({selected: value});
+                self.props.onChange(value);
             }
         });
     }
@@ -34,7 +36,7 @@ export default class SceneSelector extends Component {
                     <option/>
                     {_.values(this.props.scenes).map( scene =>  <option key={scene._id} value={scene._id}>{scene.name}</option>)}
                 </select>
-                <button className="ui primary button" onClick={this.loadClick.bind(this)}>Load</button>
+                {this.props.onSceneLoad ? <button className="ui primary button" onClick={this.loadClick.bind(this)}>Load</button> : null }
                 {this.props.onSceneRemove ? <button className="ui red button" onClick={this.removeClick.bind(this)}>Delete</button> : null}
             </div>);
     }

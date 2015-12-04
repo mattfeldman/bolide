@@ -6,6 +6,7 @@ module.exports = {
     // Make sure we use Meteor package for jQuery, react and react-router
     'jquery': '$',
     'react': 'React',
+    'moment': 'moment',
     'react-router': 'ReactRouter',
     'react-dom': 'ReactDOM',
     'react-addons-transition-group': 'React.addons.TransitionGroup',

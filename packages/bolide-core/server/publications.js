@@ -18,3 +18,8 @@ Meteor.publish('manualLightState', function () {
 Meteor.publish('scenes', function () {
     return Scenes.find({});
 });
+
+Meteor.publish('schedules', function () {
+    return Schedules.find({});
+});
+

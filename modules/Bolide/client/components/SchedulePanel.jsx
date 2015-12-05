@@ -8,6 +8,7 @@ import TimePicker from 'react-time-picker';
 export default class SchedulePanel extends Component {
     getMeteorData() {
         var scenesSub = Meteor.subscribe('scenes');
+        var schedulesSub = Meteor.subscribe('schedules');
         var scenes = Scenes.find();
         return {
             loaded: scenesSub.ready(),
@@ -78,7 +79,7 @@ class NewSchedule extends Component {
     }
 
     addSchedule(){
-        Meteor.call('addSchedule', this.state);
+        Meteor.call('addSchedule', this.state.selectedSceneId, this.state.time, this.state.enabledDays);
     }
 
     render() {

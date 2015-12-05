@@ -14,7 +14,8 @@ Package.onUse(function(api) {
         'aldeed:simple-schema',
         'dburles:collection-helpers',
         'ecmascript',
-        'bolide:hue'
+        'bolide:hue',
+        'jagi:astronomy@1.2.4'
     ]);
     api.addFiles('plugin.js');
 
@@ -22,6 +23,7 @@ Package.onUse(function(api) {
     api.addFiles('models/Lights.js');
     api.addFiles('models/LightStates.js');
     api.addFiles('models/Scenes.js');
+    api.addFiles('models/Schedules.js');
 
     api.addFiles('server/bridgeMethods.js');
     api.addFiles('server/lightMethods.js');
@@ -34,6 +36,7 @@ Package.onUse(function(api) {
         'Lights',
         'LightStates',
         'Scenes',
+        'Schedules',
         'LightState',
         'ManualState',
         'BolidePlugin',

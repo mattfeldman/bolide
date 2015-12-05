@@ -1,6 +1,11 @@
 Meteor.methods({
-    addSchedule(schedule){
-        check(schedule, Object);
-        console.log(schedule);
+    addSchedule(sceneId, time, enabledDays){
+        let schedule = new Schedule();
+        schedule.set({
+            sceneId: sceneId,
+            enabledDays: enabledDays,
+            time: time
+        });
+        schedule.save();
     }
 });

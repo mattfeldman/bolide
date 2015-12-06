@@ -13,6 +13,7 @@ Package.onUse(function(api) {
         'bolide:log',
         'bolide:hue',
         'bolide:core',
+        'bolide:schedule-runner',
     ]);
 
     api.addFiles('service.js');

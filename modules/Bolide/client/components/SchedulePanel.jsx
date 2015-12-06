@@ -11,8 +11,9 @@ export default class SchedulePanel extends Component {
         var schedulesSub = Meteor.subscribe('schedules');
         var scenes = Scenes.find();
         return {
-            loaded: scenesSub.ready(),
-            scenes: scenes.fetch()
+            loaded: scenesSub.ready() && schedulesSub.ready(),
+            scenes: scenes.fetch(),
+            schedules: Schedules.find().fetch()
         }
 
     }
@@ -29,10 +30,46 @@ export default class SchedulePanel extends Component {
             <div className="ui container">
                 <h1 className="ui header">Scene</h1>
                 <NewSchedule availableScenes={this.data.scenes}/>
+                <ScheduleTable schedules={this.data.schedules} scenes={this.data.scenes} />
             </div>
         );
     }
 };
+
+class ScheduleTable extends Component {
+    render(){
+        return (
+            <table className="ui table">
+                <tbody>
+                    {this.props.schedules.map(schedule => this.renderScheduleRow(schedule))}
+                </tbody>
+            </table>
+        )
+    }
+
+    sceneName(sceneId){
+        return _.find(this.props.scenes, scene => scene._id === sceneId).name;
+    }
+
+    onDeleteClick(id){
+        Meteor.call("removeSchedule", id);
+    }
+
+    renderScheduleRow(schedule){
+        return(
+            <tr>
+                <td>{this.sceneName(schedule.sceneId)}</td>
+                <td>{schedule.time}</td>
+                <td>
+                    <div className="ui celled seven column equal width grid">
+                        {_.values(schedule.enabledDays).map(enabled => enabled ? <div className="green column"/> : <div className="grey column"/>)}
+                    </div>
+                </td>
+                <td><div className="ui link button" onClick={this.onDeleteClick.bind(this, schedule._id)}>delete</div></td>
+            </tr>
+        );
+    }
+}
 
 class NewSchedule extends Component {
     static propTypes = {
@@ -83,7 +120,6 @@ class NewSchedule extends Component {
     }
 
     render() {
-        let self = this;
         return (
             <div className="ui four column equal width grid">
                 <div className="column">
@@ -106,7 +142,6 @@ class NewSchedule extends Component {
                     <div className="ui primary button" onClick={this.addSchedule.bind(this)}>Add Schedule</div>
                 </div>
             </div>
-
         );
     }
 }

@@ -15,7 +15,7 @@ Package.onUse(function(api) {
         'dburles:collection-helpers',
         'ecmascript',
         'bolide:hue',
-        'jagi:astronomy@1.2.4'
+        'jagi:astronomy@1.2.4',
     ]);
     api.addFiles('plugin.js');
 

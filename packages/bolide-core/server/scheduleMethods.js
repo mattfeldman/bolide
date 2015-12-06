@@ -7,5 +7,9 @@ Meteor.methods({
             time: time
         });
         schedule.save();
+    },
+    removeSchedule(scheduleId){
+        check(scheduleId, String);
+        Schedules.findOne(scheduleId).remove();
     }
 });

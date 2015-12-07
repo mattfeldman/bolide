@@ -103,6 +103,7 @@ export default class ScenePanel extends Component {
                 <div className="ui dividing header">Light Selection</div>
                 <div className="container">
                     <LightSelector lights={this.data.lights}
+                                   selected={this.state.lights}
                                    onSelectionChange={this.onLightSelectionChange.bind(this)}/>
                 </div>
                 <div className="ui dividing header">Scene Configuration</div>

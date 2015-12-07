@@ -12,7 +12,8 @@ export default class SceneSelector extends Component {
         $(self.refs.sceneSelectionRef).dropdown({
             onChange(value){
                 self.setState({selected: value});
-                self.props.onChange(value);
+                
+                self.props.onChange && self.props.onChange(value);
             }
         });
     }

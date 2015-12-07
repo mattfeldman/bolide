@@ -3,6 +3,7 @@ export default class LightSelector extends Component {
     static propTypes = {
         lights: React.PropTypes.object.isRequired,
         onSelectionChange: React.PropTypes.func.isRequired,
+        selected: React.PropTypes.array
     };
 
     componentDidMount() {
@@ -11,7 +12,15 @@ export default class LightSelector extends Component {
             onChange(value){
                 self.props.onSelectionChange(value);
             }
-        });
+        }).dropdown('set selected', this.props.selected);
+    }
+
+    componentWillReceiveProps(props){
+        $(this.refs.lightSelectionRef).dropdown({
+            onChange(value){
+                props.onSelectionChange(value);
+            }
+        }).dropdown('set selected', props.selected);
     }
 
     render() {

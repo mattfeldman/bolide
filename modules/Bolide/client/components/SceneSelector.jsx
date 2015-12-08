@@ -2,7 +2,7 @@ import { Component, PropTypes } from 'react';
 export default class SceneSelector extends Component {
     static propTypes = {
         scenes: React.PropTypes.array.isRequired,
-        onSceneLoad: React.PropTypes.func.isRequired,
+        onSceneLoad: React.PropTypes.func,
         onSceneRemove: React.PropTypes.func,
         onChange: React.PropTypes.func,
     };

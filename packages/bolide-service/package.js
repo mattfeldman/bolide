@@ -16,7 +16,7 @@ Package.onUse(function(api) {
         'bolide:schedule-runner',
     ]);
 
-    api.addFiles('service.js');
+    api.addFiles('service.js', 'server');
     api.export('service', 'server');
     api.addFiles('state-manager.js', 'server');
 });

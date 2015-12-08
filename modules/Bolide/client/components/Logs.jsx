@@ -11,13 +11,13 @@ export default class Logs extends Component {
         };
     }
     renderRow(log){
-        let singleLineStyle = {'white-space': 'nowrap'};
+        let singleLineStyle = {whiteSpace: 'nowrap'};
         return(
-        <tr>
-            <td>{log.level}</td>
-            <td>{log.message}</td>
-            <td style={singleLineStyle}>{moment(log.date).fromNow()}</td>
-        </tr>
+            <tr key={log._id}>
+                <td>{log.level}</td>
+                <td>{log.message}</td>
+                <td style={singleLineStyle}>{moment(log.date).fromNow()}</td>
+            </tr>
         );
     }
     renderTable(){

@@ -7,7 +7,7 @@ export default class PluginLayout extends Component {
             <div className="row">
                 <div className="four wide column">
                     <div className="ui vertical fluid left attached tabular menu">
-                        {BolidePlugin.list.map(p=> <Link to={"/plugins/"+p.name} activeClassName="active" className="item">{p.name}</Link>)}
+                        {BolidePlugin.list.map(p=> <Link key={p.name} to={"/plugins/"+p.name} activeClassName="active" className="item">{p.name}</Link>)}
                     </div>
                 </div>
                 <div className="twelve wide stretched column">
@@ -18,4 +18,4 @@ export default class PluginLayout extends Component {
             </div>
         );
     }
-};
+};1

@@ -57,12 +57,12 @@ class ScheduleTable extends Component {
 
     renderScheduleRow(schedule){
         return(
-            <tr>
+            <tr key={schedule._id}>
                 <td>{this.sceneName(schedule.sceneId)}</td>
                 <td>{schedule.time}</td>
                 <td>
                     <div className="ui celled seven column equal width grid">
-                        {_.values(schedule.enabledDays).map(enabled => enabled ? <div className="green column"/> : <div className="grey column"/>)}
+                        {_.map(schedule.enabledDays, (enabled,i) => enabled ? <div key={i} className="green column " foo={i}/> : <div className="grey column"/>)}
                     </div>
                 </td>
                 <td><div className="ui link button" onClick={this.onDeleteClick.bind(this, schedule._id)}>delete</div></td>

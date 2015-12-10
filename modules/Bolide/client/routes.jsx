@@ -10,7 +10,7 @@ import PluginLayout from './components/PluginLayout';
 
 export default (
     <Route path="/" component={MainLayout}>
-        <Route path="/" component={LightPanel} />
+        <IndexRoute path="/" component={LightPanel} />
         <Route path="lights" component={LightPanel} />
         <Route path="scene_select" component={SceneSelectPanel} />
         <Route path="scenes" component={ScenePanel} />

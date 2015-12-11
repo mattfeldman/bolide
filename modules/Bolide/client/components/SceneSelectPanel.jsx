@@ -1,5 +1,6 @@
 import { Component, PropTypes } from 'react';
 import ReactMixin from 'react-mixin';
+import Scene from './Scene';
 
 @ReactMixin.decorate(ReactMeteorData)
 export default class SceneSelectPanel extends Component {
@@ -24,8 +25,8 @@ export default class SceneSelectPanel extends Component {
         return(
             <div className="ui container">
                 <h1 className="ui header">Scene</h1>
-                <div className="ui buttons">
-                    {this.data.scenes.map(scene => <div className="ui button" key={scene._id} onClick={this.loadSceneClick.bind(this, scene)}>{scene.name}</div>)}
+                <div>
+                    {this.data.scenes.map(scene => <Scene key={scene._id} scene={scene} onClick={this.loadSceneClick}/>)}
                 </div>
             </div>
         );

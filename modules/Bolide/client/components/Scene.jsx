@@ -6,6 +6,16 @@ export default class Scene extends Component {
         scene: React.PropTypes.object.isRequired
     };
     render(){
-        return (<div className="ui button" onClick={this.props.onClick.bind(this, this.props.scene)}>{this.props.scene.name}</div>);
+        let lightCount = _.keys(this.props.scene.substate).length;
+        return (
+            <a className="ui link card" onClick={this.props.onClick.bind(this, this.props.scene)}>
+                <div className="content">
+                    <div className="header">
+                        {this.props.scene.name}
+                    </div>
+                    <div className="meta">{lightCount} lights</div>
+                </div>
+            </a>
+        );
     }
 }

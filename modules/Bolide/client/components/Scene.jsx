@@ -15,7 +15,29 @@ export default class Scene extends Component {
                     </div>
                     <div className="meta">{lightCount} lights</div>
                 </div>
+                <div className="content">
+                    {_.map(this.props.scene.substate, (lightstate) => <StateIndicator lightstate={lightstate} />)}
+                </div>
             </a>
         );
+    }
+}
+class StateIndicator extends Component {
+    static propTypes = {
+        lightstate : React.PropTypes.object.isRequired
+    };
+    render(){
+        console.log();
+        let {r,g,b} = _.extend({r:255,g:255,b:0},this.props.lightstate.rgb);
+        var colorStyle = {
+            backgroundColor: `rgb(${r},${g},${b})`,
+            width: '2em',
+            height: '2em',
+            borderRadius:'2em',
+            border: '0.1em solid black',
+            display: 'inline-block',
+            opacity: (this.props.lightstate.bri || 254) / 254
+        };
+        return <div style={colorStyle}></div>
     }
 }

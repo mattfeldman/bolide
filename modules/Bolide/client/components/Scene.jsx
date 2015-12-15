@@ -16,7 +16,7 @@ export default class Scene extends Component {
                     <div className="meta">{lightCount} lights</div>
                 </div>
                 <div className="content">
-                    {_.map(this.props.scene.substate, (lightstate) => <StateIndicator lightstate={lightstate} />)}
+                    {_.map(this.props.scene.substate, (lightstate, i) => <StateIndicator key={i} lightstate={lightstate} />)}
                 </div>
             </a>
         );

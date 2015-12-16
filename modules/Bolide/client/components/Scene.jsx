@@ -27,8 +27,8 @@ class StateIndicator extends Component {
         lightstate : React.PropTypes.object.isRequired
     };
     render(){
-        console.log();
-        let {r,g,b} = _.extend({r:255,g:255,b:0},this.props.lightstate.rgb);
+        let defaultColor = this.props.lightstate.on === false ? {r:20,g:20,b:20} : {r:255,g:255,b:0};
+        let {r,g,b} = _.extend(defaultColor, this.props.lightstate.rgb);
         var colorStyle = {
             backgroundColor: `rgb(${r},${g},${b})`,
             width: '2em',

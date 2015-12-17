@@ -24,7 +24,7 @@ export default class LightPanel extends Component {
               <h1 className="ui header">Lights {this.data.count}
                   {this.renderAllOff()}
               </h1>
-              <div className="ui four cards">
+              <div className="ui four doubling stackable cards">
                   {this.data.lights.map(light =>  <Light key={light._id} light={light} id={light._id}/>)}
               </div>
           </div>

@@ -25,7 +25,7 @@ export default class SceneSelectPanel extends Component {
         return(
             <div className="ui container">
                 <h1 className="ui header">Scene</h1>
-                <div>
+                <div className="ui doubling stackable cards">
                     {this.data.scenes.map(scene => <Scene key={scene._id} scene={scene} onClick={this.loadSceneClick}/>)}
                 </div>
             </div>

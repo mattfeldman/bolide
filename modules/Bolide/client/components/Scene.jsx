@@ -1,4 +1,5 @@
 import {PropTypes,Component} from 'react'
+import ReactMixin from 'react-mixin'
 
 export default class Scene extends Component {
     static propTypes = {
@@ -15,16 +16,27 @@ export default class Scene extends Component {
                     </div>
                     <div className="meta">{lightCount} lights</div>
                 </div>
-                <div className="content">
-                    {_.map(this.props.scene.substate, (lightstate, i) => <StateIndicator key={i} lightstate={lightstate} />)}
+                <div className="ui list content">
+                    {_.map(this.props.scene.substate, (lightstate, i) => <StateIndicator key={i} lightstate={lightstate} lightId={i} />)}
                 </div>
             </a>
         );
     }
 }
+
+@ReactMixin.decorate(ReactMeteorData)
 class StateIndicator extends Component {
+    getMeteorData() {
+        let loading = !Meteor.subscribe('lights').ready();
+        let light = Lights.findOne(this.props.lightId);
+        return {
+            light: light,
+            loading: loading
+        }
+    }
     static propTypes = {
-        lightstate : React.PropTypes.object.isRequired
+        lightstate : React.PropTypes.object.isRequired,
+        lightId: React.PropTypes.string.isRequired
     };
     render(){
         let defaultColor = this.props.lightstate.on === false ? {r:20,g:20,b:20} : {r:255,g:255,b:0};
@@ -35,9 +47,15 @@ class StateIndicator extends Component {
             height: '2em',
             borderRadius:'2em',
             border: '0.1em solid black',
-            display: 'inline-block',
             opacity: (this.props.lightstate.bri || 254) / 254
         };
-        return <div style={colorStyle}></div>
+        return (
+            <div className="item">
+                <img class="icon" style={colorStyle}></img>
+                <div className="ui left pointing basic circular label">
+                {this.data.loading ? "..." : this.data.light.raw.name}
+                </div>
+            </div>
+        );
     }
 }

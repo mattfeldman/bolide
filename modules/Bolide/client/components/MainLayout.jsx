@@ -1,4 +1,5 @@
 import { Component, PropTypes } from 'react';
+import BridgeConnectionStatus from './BridgeConnectionStatus'
 import Header from './Header';
 import Footer from './Footer';
 
@@ -9,6 +10,7 @@ export default class MainLayout extends Component {
         return (
             <div id="main">
                 <header>
+                    <BridgeConnectionStatus />
                     <Header />
                 </header>
                 <main style={mainStyle}>

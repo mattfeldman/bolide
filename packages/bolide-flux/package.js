@@ -1,0 +1,21 @@
+Package.describe({
+    name: 'bolide:flux',
+    description: 'A F.lux like package for triggering scenes in bolide',
+    version: '0.0.1',
+    git: ''
+});
+
+
+Package.onUse(function(api) {
+    api.versionsFrom('1.0');
+    api.use([
+        'ecmascript',
+        'bolide:core',
+        'bolide:log',
+        'alisalaah:suncalc',
+        'react',
+        'mongo'
+    ]);
+    api.addFiles('flux.js','server');
+    api.addFiles('Flux.jsx','client');
+});

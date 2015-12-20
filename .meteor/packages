@@ -27,3 +27,4 @@ semantic:ui-css
 momentjs:moment
 underscore
 bolide:rescue-time
+bolide:flux

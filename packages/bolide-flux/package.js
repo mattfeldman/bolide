@@ -5,6 +5,9 @@ Package.describe({
     git: ''
 });
 
+Npm.depends({
+    'suncalc': '1.7.0'
+});
 
 Package.onUse(function(api) {
     api.versionsFrom('1.0');
@@ -12,7 +15,6 @@ Package.onUse(function(api) {
         'ecmascript',
         'bolide:core',
         'bolide:log',
-        'alisalaah:suncalc',
         'react',
         'mongo'
     ]);

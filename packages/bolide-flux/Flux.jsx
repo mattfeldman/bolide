@@ -5,6 +5,7 @@ Flux = React.createClass({
         let plugin = PluginSettings.findOne('Flux') || {};
         return {
             location: plugin.location,
+            times: plugin.times,
             loaded: pluginSubscription.ready()
         };
     },
@@ -17,20 +18,16 @@ Flux = React.createClass({
                 <div className="ui header">Flux Plugin</div>
                 {!this.data.loaded ?
                     'Loading..' :
-                    <FluxLocation onLocationChange={this.onLocationChange} location={this.data.location} />}
+                    <div>
+                        <FluxLocation onLocationChange={this.onLocationChange} location={this.data.location} />
+                        <CurrentTimes sunrise={this.data.times.sunrise.toString()} sunset={this.data.times.sunset.toString()} />
+                    </div>
+                    }
             </div>
         );
     }
 });
 FluxLocation = React.createClass({
-    getDefaultProps(){
-        return {
-            location: {
-                latitude: 0,
-                longitude: 0
-            }
-        };
-    },
     onLocateClick(){
         navigator.geolocation.getCurrentPosition((geo)=>{
             let {latitude, longitude} = geo.coords;
@@ -55,4 +52,21 @@ FluxLocation = React.createClass({
         );
     }
 });
+
+CurrentTimes = React.createClass({
+    getDefaultProps(){
+        return {
+            sunrise: 0,
+            sunset: 0
+        };
+    },
+    render(){
+        return (
+            <div>
+                <p>Sunrise: {this.props.sunrise}</p>
+                <p>Sunset: {this.props.sunset}</p>
+            </div>);
+    }
+});
+
 BolidePlugin.register("Flux", Flux);

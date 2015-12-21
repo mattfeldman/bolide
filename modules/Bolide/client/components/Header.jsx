@@ -18,6 +18,7 @@ export default class Header extends Component {
                     <Link to="/logs" activeClassName="active" className="item"><i className="browser icon"></i> Logs</Link>
                     <Link to="/schedule" activeClassName="active" className="item"><i className="calendar icon"></i> Schedule</Link>
                     <Link to="/plugins" activeClassName="active" className="item"><i className="puzzle icon"></i> Plugins</Link>
+                    <Link to="/debug" activeClassName="active" className="item"><i className="bug icon"></i> Debug</Link>
                 </div>
             </div>
         </div>);

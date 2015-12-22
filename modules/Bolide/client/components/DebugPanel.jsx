@@ -1,6 +1,7 @@
 import { Component, PropTypes } from 'react';
 import ReactMixin from 'react-mixin';
 import Light from './Light.jsx';
+import {Table} from 'reactable';
 
 @ReactMixin.decorate(ReactMeteorData)
 export default class DebugPanel extends Component {
@@ -19,29 +20,28 @@ export default class DebugPanel extends Component {
         if (!this.data.loaded){
             return <span>Loading...</span>
         }
+        let data = _.map(this.data.lights, (k,v) => {
+            let {raw} = k;
+            console.log(raw);
+            return {
+                id: v,
+                uniqueid: raw.uniqueid,
+                model: raw.modelid,
+                version: raw.swversion,
+                name: raw.name,
+                alert: raw.state.alert,
+                bri: raw.state.bri,
+                color: raw.state.colormode,
+                ct: raw.state.ct,
+                effect: raw.state.effect,
+                hue: raw.state.hue,
+                on: raw.state.on.toString(),
+                reachable: raw.state.reachable.toString(),
+                xy: `(${raw.state.xy[0]}, ${raw.state.xy[1]})`
+            }
+        });
         return(
-            <div>
-                <table className="ui selectable striped celled table">
-                    <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>uniqueid</th>
-                            <th>name</th>
-                            <th>alert</th>
-                            <th>bri</th>
-                            <th>colormode</th>
-                            <th>ct</th>
-                            <th>effect</th>
-                            <th>hue</th>
-                            <th>on</th>
-                            <th>reachable</th>
-                            <th>xy</th>
-                        </tr>
-                    </thead>
-                    <tbody>                        {this.data.lights.map(light =>  <RawLightInfo key={light._id} light={light} id={light._id}/>)}
-                    </tbody>
-                </table>
-            </div>
+            <Table className="ui table" data={data} sortable={true}/>
         );
     }
 };

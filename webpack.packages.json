@@ -21,5 +21,6 @@
   "classnames" : "2.2.0",
   "react": "0.14.1",
   "react-dom": "0.14.1",
-  "react-time-picker": "1.1.0"
+  "react-time-picker": "1.1.0",
+  "reactable": "0.12.0"
 }

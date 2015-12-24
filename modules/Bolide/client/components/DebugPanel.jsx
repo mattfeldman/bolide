@@ -1,7 +1,8 @@
 import { Component, PropTypes } from 'react';
 import ReactMixin from 'react-mixin';
 import Light from './Light.jsx';
-import {Table} from 'reactable';
+import {Table, Tr, Td} from 'reactable';
+import classNames from 'classnames';
 
 @ReactMixin.decorate(ReactMeteorData)
 export default class DebugPanel extends Component {
@@ -20,50 +21,26 @@ export default class DebugPanel extends Component {
         if (!this.data.loaded){
             return <span>Loading...</span>
         }
-        let data = _.map(this.data.lights, (k,v) => {
-            let {raw} = k;
-            console.log(raw);
-            return {
-                id: v,
-                uniqueid: raw.uniqueid,
-                model: raw.modelid,
-                version: raw.swversion,
-                name: raw.name,
-                alert: raw.state.alert,
-                bri: raw.state.bri,
-                color: raw.state.colormode,
-                ct: raw.state.ct,
-                effect: raw.state.effect,
-                hue: raw.state.hue,
-                on: raw.state.on.toString(),
-                reachable: raw.state.reachable.toString(),
-                xy: `(${raw.state.xy[0]}, ${raw.state.xy[1]})`
-            }
-        });
         return(
-            <Table className="ui table" data={data} sortable={true}/>
+            <Table className="ui sortable selectable table" sortable={true}>
+                {this.data.lights.map((light) =>
+                    <Tr className={classNames({'warning':!light.raw.state.reachable})}>
+                        <Td column="id">{light.id}</Td>
+                        <Td column="uniqueid">{light.raw.uniqueid}</Td>
+                        <Td column="model">{light.raw.modelid}</Td>
+                        <Td column="version">{light.raw.swversion}</Td>
+                        <Td column="name">{light.raw.name}</Td>
+                        <Td column="alert">{light.raw.state.alert}</Td>
+                        <Td column="bri">{light.raw.state.bri}</Td>
+                        <Td column="color">{light.raw.state.colormode}</Td>
+                        <Td column="ct">{light.raw.state.ct}</Td>
+                        <Td column="effect">{light.raw.state.effect}</Td>
+                        <Td column="hue">{light.raw.state.hue}</Td>
+                        <Td column="on" className={classNames({'positive':light.raw.state.on, 'error': !light.raw.state.on})}>{light.raw.state.on.toString()}</Td>
+                        <Td column="reachable">{light.raw.state.reachable.toString()}</Td>
+                    </Tr>
+                    )}
+            </Table>
         );
     }
 };
-
-class RawLightInfo extends Component{
-    render(){
-        let raw = this.props.light.raw;
-        return(
-            <tr>
-                <td>{this.props.id}</td>
-                <td>{raw.uniqueid}</td>
-                <td>{raw.name}</td>
-                <td>{raw.state.alert}</td>
-                <td>{raw.state.bri}</td>
-                <td>{raw.state.colormode}</td>
-                <td>{raw.state.ct}</td>
-                <td>{raw.state.effect}</td>
-                <td>{raw.state.hue}</td>
-                <td>{raw.state.on.toString()}</td>
-                <td>{raw.state.reachable.toString()}</td>
-                <td>{`(${raw.state.xy[0]}, ${raw.state.xy[1]})`}</td>
-            </tr>
-        );
-    }
-}

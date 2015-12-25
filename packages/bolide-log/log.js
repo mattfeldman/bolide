@@ -7,6 +7,6 @@ Meteor.log.rule('Mongo',
 });
 if (Meteor.isServer) {
     Meteor.publish('logs',function(){
-        return Meteor.log.collection.find();
+        return Meteor.log.collection.find({}, {limit: 200, sort: {timestamp: -1}});
     });
 }

@@ -1,8 +1,12 @@
 import ReactMixin from 'react-mixin';
 import { Component, PropTypes } from 'react';
+import {Table, Tr, Td} from 'reactable';
 
 @ReactMixin.decorate(ReactMeteorData)
 export default class Logs extends Component {
+    state = {
+        filter: ''
+    };
     getMeteorData() {
         var subscription = Meteor.subscribe("logs");
         return {
@@ -13,27 +17,18 @@ export default class Logs extends Component {
     renderRow(log){
         let singleLineStyle = {whiteSpace: 'nowrap'};
         return(
-            <tr key={log._id}>
-                <td>{log.level}</td>
-                <td>{log.message}</td>
-                <td style={singleLineStyle}>{moment(log.date).fromNow()}</td>
-            </tr>
+            <Tr key={log._id}>
+                <Td column="level">{log.level}</Td>
+                <Td column="message">{log.message}</Td>
+                <Td column="time" style={singleLineStyle}>{moment(log.date).fromNow()}</Td>
+            </Tr>
         );
     }
     renderTable(){
         return (
-            <table className="ui celled table">
-                <thead>
-                <tr>
-                    <th>Level</th>
-                    <th>Message</th>
-                    <th>Time</th>
-                </tr>
-                </thead>
-                <tbody>
+            <Table className="ui celled table">
                 {this.data.logs.map(log => this.renderRow(log))}
-                </tbody>
-            </table>
+            </Table>
         )
     }
     renderLoading(){

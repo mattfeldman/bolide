@@ -59,7 +59,7 @@ export default class Light extends Component {
                     <input id="brightness" type="range" min="1" max="254" onChange={this.briSlider.bind(this)} value={this.state.bri} step="1" style={{width:'100%'}}/>
                 </div>
                 <div className="content">
-                    <ColorPickerPopup value={this.state.rgb} onChange={this.onColorChange.bind(this)}/>
+                    <ColorPickerPopup fluid value={this.state.rgb} onChange={this.onColorChange.bind(this)}/>
                 </div>
                 <div className="extra content">
                     <LightToggle value={this.state.on} onChange={this.onToggleChange.bind(this)}/>

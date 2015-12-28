@@ -1,14 +1,17 @@
 import ColorPicker from 'react-color';
 import { Component, PropTypes } from 'react';
+import classNames from 'classnames';
 
 export default class ColorPickerPopup extends Component {
     state = {showColor: false};
     static propTypes = {
         value: React.PropTypes.object.isRequired,
-        onChange: React.PropTypes.func.isRequired
+        onChange: React.PropTypes.func.isRequired,
+        fluid: React.PropTypes.any
     };
     static defaultProps = {
-        value: {r: 255, g: 255, b: 255}
+        value: {r: 255, g: 255, b: 255},
+        fluid : false
     };
 
     rgbToHex(r, g, b) {
@@ -36,9 +39,10 @@ export default class ColorPickerPopup extends Component {
         let readOnly = !!this.props.onColorChange;
         let {r,g,b} = this.props.value || {};
         let colorStyle = {'backgroundColor': `rgb(${r},${g},${b})`};
+        let buttonStyle = classNames("ui right labeled basic icon button", {fluid: this.props.fluid});
         return(
             <div>
-                <div className="ui right labeled basic icon button" onClick={this.clickPickColor.bind(this)}>set color
+                <div className={buttonStyle} onClick={this.clickPickColor.bind(this)}>set color
                     <i className="icon" style={colorStyle}></i>
                 </div>
                 <div >

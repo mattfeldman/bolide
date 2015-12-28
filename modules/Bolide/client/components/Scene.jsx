@@ -45,13 +45,14 @@ class StateIndicator extends Component {
             backgroundColor: `rgb(${r},${g},${b})`,
             width: '2em',
             height: '2em',
-            borderRadius:'2em',
-            border: '0.1em solid black',
+            borderRadius:'50%',
+            float: 'left',
+            border: '1px solid black',
             opacity: (this.props.lightstate.bri || 254) / 254
         };
         return (
             <div className="item">
-                <img class="icon" style={colorStyle}></img>
+                <div style={colorStyle}></div>
                 <div className="ui left pointing basic circular label">
                 {this.data.loading ? "..." : this.data.light.raw.name}
                 </div>

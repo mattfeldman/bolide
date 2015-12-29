@@ -63,6 +63,7 @@ export default class Light extends Component {
                 </div>
                 <div className="extra content">
                     <LightToggle value={this.state.on} onChange={this.onToggleChange.bind(this)}/>
+                    {!this.props.light.raw.state.reachable ? <i className="ui orange warning icon"></i> : ''}
                     <div className="ui right floated small icon purple basic button random" onClick={this.clickRandom.bind(this)}><i className="random icon"></i></div>
                 </div>
             </div>

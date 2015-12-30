@@ -1,6 +1,6 @@
 import { Component, PropTypes } from 'react';
 import ReactMixin from 'react-mixin';
-import SceneSelector from './SceneSelector';
+import SceneSelector from 'Common/components/SceneSelector';
 import TimePicker from 'react-time-picker';
 
 

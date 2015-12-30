@@ -1,8 +1,8 @@
 import ReactMixin from 'react-mixin';
 import { Component, PropTypes } from 'react';
 
-import LightToggle from './LightToggle';
-import ColorPickerPopup from './ColorPickerPopup';
+import LightToggle from 'Common/components/LightToggle';
+import ColorPickerPopup from 'Common/components/ColorPickerPopup';
 
 @ReactMixin.decorate(ReactMeteorData)
 export default class Light extends Component {

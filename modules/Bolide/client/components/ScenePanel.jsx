@@ -3,10 +3,10 @@ import ReactMixin from 'react-mixin';
 import CheckboxGroup from 'react-checkbox-group';
 import classNames from 'classnames';
 
-import LightToggle from './LightToggle';
-import ColorPickerPopup from './ColorPickerPopup';
-import LightSelector from './LightSelector';
-import SceneSelector from './SceneSelector';
+import LightToggle from 'Common/components/LightToggle';
+import ColorPickerPopup from 'Common/components/ColorPickerPopup';
+import LightSelector from 'Common/components/LightSelector';
+import SceneSelector from 'Common/components/SceneSelector';
 
 @ReactMixin.decorate(ReactMeteorData)
 export default class ScenePanel extends Component {

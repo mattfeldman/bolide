@@ -1,6 +1,6 @@
 import { Component, PropTypes } from 'react';
 import ReactMixin from 'react-mixin';
-import Scene from './Scene';
+import Scene from 'Common/components/Scene';
 
 @ReactMixin.decorate(ReactMeteorData)
 export default class SceneSelectPanel extends Component {

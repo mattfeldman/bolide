@@ -1,4 +1,4 @@
-Flux = React.createClass({
+let Flux = React.createClass({
     mixins: [ReactMeteorData],
     getMeteorData(){
         let pluginSubscription = Meteor.subscribe('pluginSettings', 'Flux');
@@ -27,7 +27,7 @@ Flux = React.createClass({
         );
     }
 });
-FluxLocation = React.createClass({
+let FluxLocation = React.createClass({
     onLocateClick(){
         navigator.geolocation.getCurrentPosition((geo)=>{
             let {latitude, longitude} = geo.coords;
@@ -53,7 +53,7 @@ FluxLocation = React.createClass({
     }
 });
 
-CurrentTimes = React.createClass({
+let CurrentTimes = React.createClass({
     getDefaultProps(){
         return {
             sunrise: 0,
@@ -70,3 +70,4 @@ CurrentTimes = React.createClass({
 });
 
 BolidePlugin.register("Flux", Flux);
+export default Flux;

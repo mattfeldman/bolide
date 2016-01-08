@@ -1,3 +1,7 @@
+import SceneSelector from 'Common/components/SceneSelector';
+import { Component, PropTypes } from 'react';
+import ReactMixin from 'react-mixin';
+
 let Flux = React.createClass({
     mixins: [ReactMeteorData],
     getMeteorData(){
@@ -20,7 +24,10 @@ let Flux = React.createClass({
                     'Loading..' :
                     <div>
                         <FluxLocation onLocationChange={this.onLocationChange} location={this.data.location} />
-                        <CurrentTimes sunrise={this.data.times.sunrise.toString()} sunset={this.data.times.sunset.toString()} />
+                        <div className="ui equal width grid">
+                            <TimeSceneSelection label="sunrise" time={this.data.times.sunrise.toString()} />
+                            <TimeSceneSelection label="sunset" time={this.data.times.sunset.toString()} />
+                        </div>
                     </div>
                     }
             </div>
@@ -53,21 +60,35 @@ let FluxLocation = React.createClass({
     }
 });
 
-let CurrentTimes = React.createClass({
-    getDefaultProps(){
+@ReactMixin.decorate(ReactMeteorData)
+class TimeSceneSelection extends Component {
+    static propTypes = {
+        label: React.PropTypes.string,
+        time: React.PropTypes.string,
+        scene: React.PropTypes.string
+    };
+    getMeteorData() {
+        var sceneSub = Meteor.subscribe('scenes');
+        var scenes = Scenes.find();
         return {
-            sunrise: 0,
-            sunset: 0
-        };
-    },
-    render(){
-        return (
-            <div>
-                <p>Sunrise: {this.props.sunrise}</p>
-                <p>Sunset: {this.props.sunset}</p>
-            </div>);
+            loaded: sceneSub.ready(),
+            scenes: scenes.fetch()
+        }
     }
-});
+    render(){
+        return(
+            <div className="ui column">
+                <h4 className="ui header">
+                    {this.props.label}
+                    <div className="sub header">
+                        {this.props.time}
+                    </div>
+                </h4>
+                <SceneSelector scenes={this.data.scenes} />
+            </div>
+        );
+    }
+}
+
 
 BolidePlugin.register("Flux", Flux);
-export default Flux;

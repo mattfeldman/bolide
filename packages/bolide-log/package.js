@@ -9,10 +9,13 @@ Package.onUse(function(api) {
     api.versionsFrom('1.0');
 
     api.use([
+        'ecmascript',
+        'underscore',
         'ostrio:logger',
         'ostrio:loggermongo'
     ]);
 
     api.addFiles('log.js');
     api.export('Meteor');
+    api.export('BolideLog');
 });

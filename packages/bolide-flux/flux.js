@@ -8,6 +8,7 @@ Meteor.startup(function() {
             const settings = PluginSettings.findOne("Flux");
             if(!settings){
                 log.info("Not configured.");
+                return;
             }
             let {latitude, longitude} = settings.location;
             var times = SunCalc.getTimes(new Date(), latitude, longitude);

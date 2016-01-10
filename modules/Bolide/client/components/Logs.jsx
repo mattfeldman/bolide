@@ -19,6 +19,8 @@ export default class Logs extends Component {
         return(
             <Tr key={log._id}>
                 <Td column="level">{log.level}</Td>
+                <Td column="category">{log.additional&& log.additional.category}</Td>
+                <Td column="module">{log.additional && log.additional.module}</Td>
                 <Td column="message">{log.message}</Td>
                 <Td column="time" style={singleLineStyle}>{moment(log.date).fromNow()}</Td>
             </Tr>

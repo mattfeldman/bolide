@@ -18,7 +18,7 @@ RescueTime = React.createClass({
     render(){
         return(
             <div>
-                <div cl7assName="ui header">RescueTime Plugin</div>
+                <div className="ui header">RescueTime Plugin</div>
                 {!this.data.loaded ?
                     'Loading..' :
                     <RescueTimeKey

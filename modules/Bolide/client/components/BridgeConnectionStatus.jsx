@@ -18,8 +18,8 @@ export default class BridgeConnectionStatus extends Component {
     };
     render() {
         let iconStyle = classNames('ui inverted circular wifi icon', {
-            'green' : !this.data.loading && this.data.bridge.connected,
-            'red': !this.data.loading && !this.data.bridge.connected,
+            'green' : !this.data.loading && this.data.bridge && this.data.bridge.connected,
+            'red': !this.data.loading && !this.data.bridge,
             'orange': this.data.loading
         });
         return (

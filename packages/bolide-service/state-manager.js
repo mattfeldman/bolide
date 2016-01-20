@@ -26,7 +26,9 @@ function manageState(){
             });
         }
         if(Object.keys(reqState).length !== 0) {
-            service.hue().setLightState(id, reqState);
+            if(!service.hue().error) {
+                service.hue().setLightState(id, reqState);
+            }
         }
     });
     lastStates = newState;

@@ -30,6 +30,9 @@ BolideLog = class BolideLog {
     }
     _call(fn, msg, data) {
         console.log(msg);
+        if(typeof msg == 'object'){
+            msg = JSON.stringify(msg);
+        }
         data = _.defaults(data || {}, {category: this.category, module: this.module});
         fn.call(Meteor.log, msg, data);
     }

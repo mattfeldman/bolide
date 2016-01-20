@@ -14,30 +14,31 @@ Hue = class Hue {
         this.ip = ip;
         this.username = username;
         this.baseUrl = `http://${ip}/api/${username}/`;
+        this.error = false;
         log.debug('Registered bridge ' +this.baseUrl);
     }
     getLights(){
-        const response = HTTP.get(this.baseUrl+"lights");
+        const response = HTTP.get(this.baseUrl+"lights", this.handleHttpError);
         return response.data;
     }
     setLightOn(id, on){
-        const fullReq = this.baseUrl+`lights/${id}/state`;
-        HTTP.put(fullReq, {data:{"on": on}});
+        const data = {on: on};
+        this.httpPut(id,  data);
         log.info(`Light Toggle: ${id} now ${on}`,{light:id});
     }
     setLightColor(id,r,g,b){
         const data = {xy:rgbToXY(r,g,b)};
-        HTTP.put(`${this.baseUrl}lights/${id}/state`, {data:data});
+        this.httpPut(id,  data);
         log.info(`Light Color: ${id} now rgb(${r},${g},${b})`,{light:id});
     }
     setLightRandom(id){
         const data = {xy:rgbToXY(_randomRGBValue(),_randomRGBValue(),_randomRGBValue())};
-        HTTP.put(`${this.baseUrl}lights/${id}/state`, {data:data});
+        this.httpPut(id,  data);
         log.info(`Light Random: ${id}`,{light:id});
     }
     setLightBrightness(id, brightness){
         const data = {bri: brightness};
-        HTTP.put(`${this.baseUrl}lights/${id}/state`, {data:data});
+        this.httpPut(id,  data);
         log.info(`Light Brightness: ${id} now ${brightness}`,{light:id});
     }
     setLightState(id, state){
@@ -46,10 +47,19 @@ Hue = class Hue {
             data.xy = rgbToXY(state.rgb.r,state.rgb.g,state.rgb.b);
             delete data.rgb;
         }
-        HTTP.put(`${this.baseUrl}lights/${id}/state`, {data:data});
-        log.info(`Light State: ${id} now ${data}`,{light:id});
+        this.httpPut(id,  data);
+        log.info(`Light State: ${id} now ${JSON.stringify(state)}`,{light:id});
     }
-}
+    httpPut(id, data){
+        HTTP.put(`${this.baseUrl}lights/${id}/state`, {data:data}, this.handleHttpError);
+    }
+    handleHttpError(error, result){
+        if(error){
+            this.error = error;
+            log.error(error);
+        }
+    }
+};
 function rgbToXY(red, green, blue) {
     var point = _getXYPointFromRGB(red, green, blue);
     return [point.x, point.y];

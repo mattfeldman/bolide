@@ -13,7 +13,10 @@ function processBridge(bridge){
     }
     interval = Meteor.setInterval(function () {
         try {
-            mapLights(hueService.getLights());
+            if(hueService && !hueService.error){
+                mapLights(hueService.getLights());
+            }
+
         }
         catch(e){
             Meteor.log.error(e);

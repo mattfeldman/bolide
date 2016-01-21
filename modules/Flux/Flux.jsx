@@ -14,7 +14,7 @@ let Flux = React.createClass({
         };
     },
     onLocationChange(location){
-        Meteor.call('updateSetting','Flux', {location});
+        Meteor.call('updateSetting', 'Flux', {location});
     },
     render(){
         return(
@@ -24,10 +24,13 @@ let Flux = React.createClass({
                     'Loading..' :
                     <div>
                         <FluxLocation onLocationChange={this.onLocationChange} location={this.data.location} />
-                        <div className="ui equal width grid">
-                            <TimeSceneSelection label="sunrise" time={this.data.times.sunrise.toString()} />
-                            <TimeSceneSelection label="sunset" time={this.data.times.sunset.toString()} />
-                        </div>
+                        {this.data.times ?
+                            <div className="ui equal width grid">
+                                <TimeSceneSelection label="sunrise" time={this.data.times.sunrise.toString()}/>
+                                <TimeSceneSelection label="sunset" time={this.data.times.sunset.toString()}/>
+                            </div>
+                            :
+                            <span>Input your location to set scenes.</span>}
                     </div>
                     }
             </div>
@@ -35,6 +38,11 @@ let Flux = React.createClass({
     }
 });
 let FluxLocation = React.createClass({
+    getDefaultProps(){
+        return {
+            location:{latitude:null,longitude: null}
+        };
+    },
     onLocateClick(){
         navigator.geolocation.getCurrentPosition((geo)=>{
             let {latitude, longitude} = geo.coords;
@@ -75,6 +83,11 @@ class TimeSceneSelection extends Component {
             scenes: scenes.fetch()
         }
     }
+    onSceneChange(value){
+        let sceneSelection = {};
+        sceneSelection[this.props.label] = value;
+        Meteor.call('updateSetting', 'Flux', {sceneSelection});
+    }
     render(){
         return(
             <div className="ui column">
@@ -84,7 +97,7 @@ class TimeSceneSelection extends Component {
                         {this.props.time}
                     </div>
                 </h4>
-                <SceneSelector scenes={this.data.scenes} />
+                <SceneSelector scenes={this.data.scenes} onChange={this.onSceneChange.bind(this)} />
             </div>
         );
     }

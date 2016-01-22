@@ -26,6 +26,6 @@ Meteor.methods({
     updateSetting(id, doc){
         check(id, String);
         check(doc, Object);
-        PluginSettings.upsert({_id:id},doc);
+        PluginSettings.upsert({_id:id},{$set:doc});
     }
 });

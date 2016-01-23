@@ -14,7 +14,7 @@ let Flux = React.createClass({
         };
     },
     onLocationChange(location){
-        Meteor.call('updateSetting', 'Flux', {location});
+        Meteor.call('updateSetting', 'Flux', {location}, ()=> Meteor.call('Flux.UpdateTimes'));
     },
     render(){
         return(

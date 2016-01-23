@@ -18,5 +18,6 @@ Package.onUse(function(api) {
         'react',
         'mongo'
     ]);
+    api.addFiles('methods.js');
     api.addFiles('flux.js','server');
 });

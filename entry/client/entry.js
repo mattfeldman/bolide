@@ -1,4 +1,5 @@
 // Plugins
+import 'Subscriptions/Subscribe';
 import 'Flux/flux';
 
 // Methods for optimistic updates

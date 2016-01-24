@@ -1,37 +1,31 @@
 import { Component, PropTypes } from 'react';
 import ReactMixin from 'react-mixin';
 import Light from './Light.jsx';
+import Subscribe from 'Subscriptions/Subscribe';
 
-@ReactMixin.decorate(ReactMeteorData)
+@ReactMixin.decorate(TrackerReact)
 export default class LightPanel extends Component {
-    getMeteorData(){
-        var lightsSub = Meteor.subscribe('lights');
-        var stateSub = Meteor.subscribe('manualLightState');
-        var lights = Lights.find();
-        return{
-            loaded: lightsSub.ready() && stateSub.ready(),
-            count: lights.count(),
-            lights: lights.fetch()
-        }
-
+    get lights(){
+        return Lights.find().fetch();
+    }
+    get count(){
+        let lights = this.lights;
+        return lights && lights.length || 0;
     }
     render(){
-        if (!this.data.loaded){
-            return <span>Loading...</span>
-        }
         return(
-          <div>
-              <h1 className="ui header">Lights {this.data.count}
+          <Subscribe subscriptions={{'lights':null,'manualLightState':null}}>
+              <h1 className="ui header">Lights {this.count}
                   {this.renderAllOff()}
               </h1>
               <div className="ui four doubling stackable cards">
-                  {this.data.lights.map(light =>  <Light key={light._id} light={light} id={light._id}/>)}
+                  {this.lights.map(light =>  <Light key={light._id} light={light} id={light._id}/>)}
               </div>
-          </div>
+          </Subscribe>
         );
     }
     renderAllOff(){
-        if(this.data.count) {
+        if(this.count) {
             return (<div className="ui right floated off button" onClick={this.handleAllOff}>all off</div>);}
     }
     handleAllOff(){

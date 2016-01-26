@@ -18,7 +18,7 @@ Hue = class Hue {
         log.debug('Registered bridge ' +this.baseUrl);
     }
     getLights(){
-        const response = HTTP.get(this.baseUrl+"lights", this.handleHttpError);
+        const response = HTTP.get(this.baseUrl+"lights", this.handleHttpError.bind(this));
         return response.data;
     }
     setLightOn(id, on){
@@ -51,10 +51,10 @@ Hue = class Hue {
         log.info(`Light State: ${id} now ${JSON.stringify(state)}`,{light:id});
     }
     httpPut(id, data){
-        HTTP.put(`${this.baseUrl}lights/${id}/state`, {data:data}, this.handleHttpError);
+        HTTP.put(`${this.baseUrl}lights/${id}/state`, {data:data}, this.handleHttpError.bind(this));
     }
     handleHttpError(error, result){
-        if(error){
+        if(error || (result && result.statusCode && result.statusCode > 200)){
             this.error = error;
             log.error(error);
         }

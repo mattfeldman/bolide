@@ -4,6 +4,12 @@ Meteor.methods({
         check(username, String);
         Bridges.upsert({_id:"main"},{$set:{ip:ip, username:username, connected:false}});
     },
+    findBridge(){
+        if(!Meteor.isServer) return;
+        const response = HTTP.get("https://www.meethue.com/api/nupnp");
+        let ip = response.data[0].internalipaddress;
+        return ip;
+    },
     syncBridge(ip){
         check(ip, String);
         if(!Meteor.isServer || !ip) return;

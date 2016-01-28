@@ -12,7 +12,7 @@ export default class SceneSelector extends Component {
         $(self.refs.sceneSelectionRef).dropdown({
             onChange(value){
                 self.setState({selected: value});
-                
+
                 self.props.onChange && self.props.onChange(value);
             }
         });
@@ -35,10 +35,13 @@ export default class SceneSelector extends Component {
                         ref="sceneSelectionRef"
                         className="ui fluid search selection dropdown">
                     <option/>
-                    {_.values(this.props.scenes).map( scene =>  <option key={scene._id} value={scene._id}>{scene.name}</option>)}
+                    {_.values(this.props.scenes)
+                      .map(scene => <option key={scene._id} value={scene._id}>{scene.name}</option>)}
                 </select>
-                {this.props.onSceneLoad ? <button className="ui primary button" onClick={this.loadClick.bind(this)}>Load</button> : null }
-                {this.props.onSceneRemove ? <button className="ui red button" onClick={this.removeClick.bind(this)}>Delete</button> : null}
+                {this.props.onSceneLoad ?
+                    <button className="ui primary button" onClick={this.loadClick.bind(this)}>Load</button> : null }
+                {this.props.onSceneRemove ?
+                    <button className="ui red button" onClick={this.removeClick.bind(this)}>Delete</button> : null}
             </div>);
     }
 }

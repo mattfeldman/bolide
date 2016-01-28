@@ -6,22 +6,23 @@ import classNames from 'classnames';
 
 @ReactMixin.decorate(ReactMeteorData)
 export default class DebugPanel extends Component {
-    getMeteorData(){
+    getMeteorData() {
         var lightsSub = Meteor.subscribe('lights');
         var stateSub = Meteor.subscribe('manualLightState');
         var lights = Lights.find();
-        return{
+        return {
             loaded: lightsSub.ready() && stateSub.ready(),
             count: lights.count(),
             lights: lights.fetch()
         }
 
     }
-    render(){
-        if (!this.data.loaded){
+
+    render() {
+        if (!this.data.loaded) {
             return <span>Loading...</span>
         }
-        return(
+        return (
             <Table className="ui sortable selectable table" sortable={true}>
                 {this.data.lights.map((light) =>
                     <Tr className={classNames({'warning':!light.raw.state.reachable})}>
@@ -36,10 +37,11 @@ export default class DebugPanel extends Component {
                         <Td column="ct">{light.raw.state.ct}</Td>
                         <Td column="effect">{light.raw.state.effect}</Td>
                         <Td column="hue">{light.raw.state.hue}</Td>
-                        <Td column="on" className={classNames({'positive':light.raw.state.on, 'error': !light.raw.state.on})}>{light.raw.state.on.toString()}</Td>
+                        <Td column="on"
+                            className={classNames({'positive':light.raw.state.on, 'error': !light.raw.state.on})}>{light.raw.state.on.toString()}</Td>
                         <Td column="reachable">{light.raw.state.reachable.toString()}</Td>
                     </Tr>
-                    )}
+                )}
             </Table>
         );
     }

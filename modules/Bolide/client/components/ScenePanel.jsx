@@ -28,7 +28,7 @@ export default class ScenePanel extends Component {
         let scene = Scenes.findOne(name);
         this.setState({
             lights: _.keys(scene.substate),
-            substate:  scene.substate,
+            substate: scene.substate,
             sceneName: scene.name,
             sceneId: scene._id
         });
@@ -164,9 +164,9 @@ export default class ScenePanel extends Component {
                 </td>
                 <td>
                     {rowState.rgb == null ? "Not Included" :
-                    <div style={{width: 50, height: 30, 'backgroundColor': `rgb(${rowState.rgb.r},${rowState.rgb.g},${rowState.rgb.b})`}}>
-                    </div>
-                        }
+                        <div style={{width: 50, height: 30, 'backgroundColor': `rgb(${rowState.rgb.r},${rowState.rgb.g},${rowState.rgb.b})`}}>
+                        </div>
+                    }
                 </td>
             </tr>
         );
@@ -177,7 +177,7 @@ export default class ScenePanel extends Component {
             <thead>
             <tr>
                 <th>
-                    {this.state.subselection.length > 0 ? this.state.subselection.length+" selected" : "No Selection"}
+                    {this.state.subselection.length > 0 ? this.state.subselection.length + " selected" : "No Selection"}
                 </th>
                 <th>
                     <div className="ui checkbox">
@@ -217,7 +217,7 @@ export default class ScenePanel extends Component {
                            step="1"/>
                 </th>
                 <th>
-                    <ColorPickerPopup value={this.state.rgb} onChange={this.onColorChange.bind(this)} />
+                    <ColorPickerPopup value={this.state.rgb} onChange={this.onColorChange.bind(this)}/>
                 </th>
             </tr>
             </thead>

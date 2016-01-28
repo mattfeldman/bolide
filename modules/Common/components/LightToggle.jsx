@@ -13,7 +13,9 @@ export default class LightToggle extends Component {
     render() {
         return (
             <div className={classNames('ui toggle checkbox', {'checked': this.props.value, 'disabled': this.props.value == null})}>
-                <input type="checkbox" checked={this.props.value} onChange={this.props.onChange && this.props.onChange.bind(this)}/>
+                <input type="checkbox"
+                       checked={this.props.value}
+                       onChange={this.props.onChange && this.props.onChange.bind(this)}/>
                 <label>{{true: 'On', false: 'Off', null: 'Not Included'}[this.props.value]}</label>
             </div>
         );

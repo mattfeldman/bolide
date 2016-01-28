@@ -11,7 +11,7 @@ export default class ColorPickerPopup extends Component {
     };
     static defaultProps = {
         value: {r: 255, g: 255, b: 255},
-        fluid : false
+        fluid: false
     };
 
     rgbToHex(r, g, b) {
@@ -22,11 +22,11 @@ export default class ColorPickerPopup extends Component {
         return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
     }
 
-    colorPickerClose(e){
+    colorPickerClose(e) {
         this.setState({showColor: false});
     }
 
-    onColorChange(e){
+    onColorChange(e) {
         let rgb = _.omit(e.rgb, 'a');
         this.props.onChange(rgb);
     }
@@ -35,12 +35,12 @@ export default class ColorPickerPopup extends Component {
         this.setState({showColor: !this.state.showColor});
     }
 
-    render(){
+    render() {
         let readOnly = !!this.props.onColorChange;
         let {r,g,b} = this.props.value || {};
         let colorStyle = {'backgroundColor': `rgb(${r},${g},${b})`};
         let buttonStyle = classNames("ui right labeled basic icon button", {fluid: this.props.fluid});
-        return(
+        return (
             <div>
                 <div className={buttonStyle} onClick={this.clickPickColor.bind(this)}>set color
                     <i className="icon" style={colorStyle}></i>

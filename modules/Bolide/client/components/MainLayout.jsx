@@ -5,8 +5,8 @@ import Footer from './Footer';
 
 require("../stylesheets/main.less");
 export default class MainLayout extends Component {
-    render(){
-        var mainStyle ={flex:1,marginTop:'2em',marginBottom:'1em'};
+    render() {
+        var mainStyle = {flex: 1, marginTop: '2em', marginBottom: '1em'};
         return (
             <div id="main">
                 <header>

@@ -26,7 +26,7 @@ Schedule = Astro.Class({
         }
     },
     events: {
-        afterInsert: function(){
+        afterInsert: function () {
             this.set('dayNumerals', convertDayMapToNumeral(this.enabledDays));
             this.save();
         }

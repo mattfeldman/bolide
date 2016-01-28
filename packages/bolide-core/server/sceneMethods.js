@@ -5,9 +5,9 @@ Meteor.methods({
         check(substate, Object);
 
         // remove empty properties
-        for(var light in substate){
-            for (var prop in substate[light]){
-                if( substate[light].hasOwnProperty(prop) && (substate[light][prop] === undefined || substate[light][prop] === null)) {
+        for (var light in substate) {
+            for (var prop in substate[light]) {
+                if (substate[light].hasOwnProperty(prop) && (substate[light][prop] === undefined || substate[light][prop] === null)) {
                     delete substate[light][prop];
                 }
             }
@@ -24,7 +24,7 @@ Meteor.methods({
         let scene = Scenes.findOne({_id: id});
         check(scene, Object);
 
-        for( id in scene.substate){
+        for (id in scene.substate) {
             manual.clearState(id);
             manual.setLight(id, scene.substate[id]);
         }

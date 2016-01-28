@@ -10,7 +10,7 @@ Meteor.methods({
         check(r, Number);
         check(g, Number);
         check(b, Number);
-        manual.setLight(id, {rgb: {r,g,b}});
+        manual.setLight(id, {rgb: {r, g, b}});
     },
     setLightBrightness(id, brightness){
         check(id, String);
@@ -18,12 +18,12 @@ Meteor.methods({
         manual.setLight(id, {bri: brightness});
     },
     setLightRandom(id){
-        if(!Meteor.isServer) return;
+        if (!Meteor.isServer) return;
         check(id, String);
         manual.setLightRandom(id);
     },
     allOff(){
-        if(!Meteor.isServer) return;
+        if (!Meteor.isServer) return;
         manual.setAllOff();
     }
 });

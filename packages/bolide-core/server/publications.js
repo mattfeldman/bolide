@@ -1,6 +1,6 @@
-Meteor.publish('pluginSettings', function(id){
+Meteor.publish('pluginSettings', function (id) {
     check(id, String);
-    return PluginSettings.find({_id:id});
+    return PluginSettings.find({_id: id});
 });
 
 Meteor.publish('lights', function () {
@@ -12,7 +12,7 @@ Meteor.publish('bridge', function () {
 });
 
 Meteor.publish('manualLightState', function () {
-    return LightStates.find({_id:"manual"});
+    return LightStates.find({_id: "manual"});
 });
 
 Meteor.publish('scenes', function () {

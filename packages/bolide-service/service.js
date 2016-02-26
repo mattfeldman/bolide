@@ -1,4 +1,5 @@
 service = {};
+let log = new BolideLog({category:"system", module:"service"});
 let hueService = {};
 service.hue = function(){
   return hueService || false;
@@ -19,13 +20,15 @@ function processBridge(bridge){
 
         }
         catch(e){
-            Meteor.log.error(e);
+            console.log(e);
+            log.error(JSON.stringify(e));
         }
     }, 5000);
 }
 function mapLights(rawResponse){
     if(!rawResponse) return;
-    for(let key of Object.keys(rawResponse)){
+    let keys = Object.keys(rawResponse);
+    for(let key of keys){
         const light = rawResponse[key];
         Lights.upsert(key, {$set:{raw:light}});
     }

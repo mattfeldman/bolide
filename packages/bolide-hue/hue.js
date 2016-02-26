@@ -18,7 +18,10 @@ Hue = class Hue {
         log.debug('Registered bridge ' +this.baseUrl);
     }
     getLights(){
-        const response = HTTP.get(this.baseUrl+"lights", this.handleHttpError.bind(this));
+        const response = HTTP.get(this.baseUrl+"lights");
+        if(!response && !response.data){
+            throw new Exception("Can't get data from hue endpoint.");
+        }
         return response.data;
     }
     setLightOn(id, on){
